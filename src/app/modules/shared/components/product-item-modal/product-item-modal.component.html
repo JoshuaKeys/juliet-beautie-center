@@ -1,0 +1,14 @@
+<div class="product-item-modal" *ngIf="shown">
+  <div class="product-item-modal__container">
+    <div class="product-item-modal__img-container">
+      <img [src]="product.secondImg">
+    </div>
+    <div class="product-item-modal__txt-container">
+      <h1>{{product.title}}</h1>
+      <p>{{product.price}}</p>
+    </div>
+  </div>
+  <div class="product-item-modal__backdrop">
+
+  </div>
+</div>

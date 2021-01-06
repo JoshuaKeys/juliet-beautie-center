@@ -1,0 +1,14 @@
+<div class="menu-drop-down" [ngClass]="{'menu-drop-down--search': type === 'search'}">
+  <div class="menu-drop-down__container" (mouseleave)="onMouseOut()" (mouseover)="onMouseOver()">
+    <div class="menu-drop-down__label">
+      <ng-content select=".label"></ng-content> <i *ngIf="type==='list'" class="fas fa-angle-down"></i>
+    </div>
+    <div class="menu-drop-down__items menu-drop-down__items--search" (mouseover)="onMouseOver()" *ngIf="searchOpened && type === 'search'">
+      
+      <ng-content select=".main-header__search"></ng-content>
+    </div>
+    <ul *ngIf="opened && type === 'list'" (mouseover)="onMouseOver()" class="menu-drop-down__items" >
+      <li  (mouseover)="preventPropagation($event)" class="menu-drop-down__item" *ngFor="let item of dropDownItems"><a class="menu-drop-down__item-link" [routerLink]="[item.itemLink]">{{item.itemName}}</a></li>
+    </ul>
+  </div>
+</div>

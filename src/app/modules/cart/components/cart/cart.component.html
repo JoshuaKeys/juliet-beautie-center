@@ -1,0 +1,36 @@
+<section class="cart">
+    <div class="cart__container container">
+        <div class="cart__sub-container">
+            <ul class="cart__items">
+                <li class="cart__item" *ngFor="let cartItem of items | async">
+                    <app-cart-item (removeCartItem)="removeItem($event)" [cartItem]="cartItem"></app-cart-item>
+                </li>
+            </ul>
+            <div class="cart__shipping">
+                <h1 class="cart__shipping-header">cart totals</h1>
+                <p class="cart__shipping-info"><span>Subtotal</span> <span>${{subTotal | async}}</span></p>
+                <div class="cart__shipping-info">
+                    <span>Shipping</span>
+                    <div class="cart__shipping-destination">
+                        <p><span>Flat rate:</span><span>${{1.99}}</span></p>
+                        <p><span>Shipping to</span><span>FL</span></p>
+                        <p><span>Change address</span></p>
+                    </div>
+                </div>
+                <p class="cart__shipping-info">
+                    <span>Total</span> <span>${{(flatRate + (subTotal | async)) | number}}</span>
+                </p>
+                <p>
+                    <button class="cart__checkout-btn" routerLink="checkout">proceed to checkout</button>
+                </p>
+                <p>
+                    <i class="cart__payment-icon fab fa-cc-visa"></i>
+                    <i class="cart__payment-icon fab fa-cc-paypal"></i>
+                    <i class="cart__payment-icon fab fa-cc-mastercard"></i>
+                    <i class="cart__payment-icon fab fa-cc-westernunion"></i>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,26 @@
+.cart-item {
+    margin-bottom: 10px;
+    &__container {
+        display: flex;
+        align-items: center;
+    }
+    &__img {
+        width: 76px;
+        margin-left: 5px;
+    }
+    &__title {
+        margin-left: 15px;
+        text-transform: capitalize;
+        max-width: 240px;
+    }
+    &__price {
+        margin-left: 15px;
+        font-weight: bold;
+    }
+    &__qty {
+        margin-left: 15px;
+    }
+    &__sub-total {
+        margin-left: 15px;
+    }
+}

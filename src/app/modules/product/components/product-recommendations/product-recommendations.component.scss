@@ -1,0 +1,14 @@
+.product-recommendations {
+    &__items {
+        padding: 0;
+        width: 200%;
+        border: thin solid black;
+        flex-wrap: wrap;
+    }
+    &__item {
+        list-style-type: none;
+        width: 25%;
+        box-sizing: border-box;
+        padding: 0 10px;
+    }
+}

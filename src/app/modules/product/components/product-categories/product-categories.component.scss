@@ -1,0 +1,17 @@
+.product-categories {
+  padding: 0;
+  &__item {
+    border-bottom: 1px solid #d8d8d8;
+    padding: 10px 0;
+    list-style-type: none;
+    font-weight: 600;
+  }
+  &__item-link {
+    text-transform: uppercase;
+    color: #d8d8d8;
+    text-decoration: none;
+    &-active {
+      color: #000;
+    }
+  }
+}

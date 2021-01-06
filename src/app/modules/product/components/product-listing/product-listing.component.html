@@ -1,0 +1,29 @@
+<div class="product-listing">
+  <div class="product-listing__container container">
+    <div class="product-listing__controls">
+      <div class="product-listing__mobile-filter" (click)="toggleMenu()">
+        <i class="fas fa-filter"></i> <span class="product-listing__mobile-filter-text">filter</span>
+      </div>
+      <select class="product-listing__sorting">
+        <option>Default sorting</option>
+        <option>Sort by popularity</option>
+        <option>Sort by latest</option>
+      </select>
+    </div>
+
+
+    <section class="product-listing__main">
+      <div class="product-listing__categories">
+        <h1>Product Categories</h1>
+        <app-product-categories></app-product-categories>
+      </div>
+      <ul class="product-listing__items">
+        <li *ngFor="let product of products" class="product-listing__item">
+          <app-product-item [product]="product"></app-product-item>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+</div>
+<app-side-filter *ngIf="isOpened" (closeMenu)="toggleMenu()"></app-side-filter>

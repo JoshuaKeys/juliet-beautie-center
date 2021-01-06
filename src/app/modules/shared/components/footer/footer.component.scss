@@ -1,0 +1,26 @@
+@import "../../../../../assets/variables.scss";
+.footer {
+  background-color: $primary-color;
+  padding: 10px 0;
+  font-size: 0.8em;
+  &__link-items {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    max-width: 500px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  &__link-item {
+    list-style-type: none;
+    padding: 0;
+  }
+  &__copyright {
+    color: #fff;
+  }
+  &__link {
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+}

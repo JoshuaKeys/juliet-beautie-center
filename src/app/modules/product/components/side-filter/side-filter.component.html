@@ -1,0 +1,27 @@
+<div class="side-filter">
+    <div class="side-filter__container">
+        <h1 class="side-filter__search">product categories</h1>
+        <ul class="side-filter__items">
+            <li class="side-filter__item">
+                <a [routerLink]="['../body-butters']" (click)="close()" routerLinkActive="router-link-active">body butters</a>
+            </li>
+            <li class="side-filter__item">
+                <a [routerLink]="['../body-scrub']" (click)="close()" routerLinkActive="router-link-active">body scrub</a>
+            </li>
+            <li class="side-filter__item">
+                <a [routerLink]="['../facial-oil']" (click)="close()" routerLinkActive="router-link-active">facial oil</a>
+            </li>
+            <li class="side-filter__item">
+                <a [routerLink]="['../facial-scrub']" (click)="close()" routerLinkActive="router-link-active">facial scrub</a>
+            </li>
+            <li class="side-filter__item">
+                <a [routerLink]="['../facial-toner']" (click)="close()" routerLinkActive="router-link-active">facial toner</a>
+            </li>
+            <li class="side-filter__item">
+                <a [routerLink]="['../facial-soap']" (click)="close()"  routerLinkActive="router-link-active">facial soap</a>
+            </li>
+        </ul>
+    </div>
+    <i class="side-filter__close-icon fas fa-times" (click)="close()"></i>
+    <div class="side-filter__back-drop" (click)="close()"></div>
+  </div>

@@ -1,0 +1,18 @@
+@import '../../../../../assets/variables.scss';
+.qty-selector {
+    &__container {
+        border: thin solid $border-color;
+        height: 40px;
+        display: flex;
+    }
+    &__qty {
+        width: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__btn {
+        width: 25px;
+        border: none;
+    }
+}

@@ -1,0 +1,10 @@
+<div class="cart-item">
+    <div class="cart-item__container">
+        <i class="far fa-times-circle" (click)="removeItem()"></i>
+        <img class="cart-item__img" [src]="'http://localhost:5000' + cartItem.productImg">
+        <span class="cart-item__title">{{cartItem.productShortDesc}}</span>
+        <span class="cart-item__price">${{cartItem.productPrice}}</span>
+        <app-qty-selector class="cart-item__qty" [qty]="cartItem.qty"></app-qty-selector>
+        <span class="cart-item__sub-total">${{+cartItem.productPrice * cartItem.qty}}</span>
+    </div>
+</div>

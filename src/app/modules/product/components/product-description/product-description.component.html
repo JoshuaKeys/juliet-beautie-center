@@ -1,0 +1,33 @@
+<section class="pdp">
+  <div class="container" >
+    <div class="pdp__container">
+      <app-product-carousel [product]="product" *ngIf="product"></app-product-carousel>
+      <div class="pdp__product-details" *ngIf="product">
+        <h1 class="pdp__product-details-title">{{product.productShortDesc}}</h1>
+        <p>
+          <b>{{product.productPrice | currency}}</b>
+        </p>
+        <p>{{product.productInstructions}}</p>
+        <div class="pdp__controls">
+          <app-qty-selector [qty]="qty"></app-qty-selector>
+          <button class="pdp__add-to-cart-btn" (click)="addToCart()">add to cart</button>
+        </div>
+        <div class="pdp__footer">
+          Category: <a routerLink="" class="pdp__category-link">{{product.productCategory}}</a>
+        </div>
+      </div>
+
+    </div>
+    <section class="pdp__related-products">
+      <h1 class="pdp__related-products-header">related products</h1>
+      <div class="pdp__related-products-items" *ngIf="product">
+        <app-product-item [product]="product"></app-product-item>
+        <app-product-item [product]="product"></app-product-item>
+        <app-product-item [product]="product"></app-product-item>
+        <app-product-item [product]="product"></app-product-item>
+      </div>
+    </section>
+  </div>
+  
+
+</section>

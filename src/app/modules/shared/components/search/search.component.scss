@@ -1,0 +1,21 @@
+@import '../../../../../assets/variables.scss';
+.search {
+    display: flex;
+    position: relative;
+    z-index: 1000000;
+    align-items: stretch;
+    &__input {
+        border: 1px solid #d8d8d8;
+        outline: 1px solid #d8d8d8;
+    }
+    &__btn {
+        background-color: $primary-color;
+        height: 34px;
+        border: none;
+        padding: 0 10px;
+    }
+    &__icon {
+        color: #fff;
+        font-size: 1.2em;
+    }
+}

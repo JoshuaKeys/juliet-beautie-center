@@ -1,0 +1,51 @@
+@import '../../../../../assets/variables.scss';
+.product-carousel {
+
+    // width: 45%;
+    width: 100%;
+    margin-right: 20px;
+    padding: 0 15px 30px 0;
+    &__equalizer {
+        visibility: hidden;
+    }
+    &__views {
+        position: relative;
+
+    }
+    &__view {
+        position: absolute;
+    }
+    &__control--active {
+        opacity: 0.5;
+    }
+    &--active {
+        z-index: 10000;
+        opacity: 1;
+        transition: all 0.5s;
+    }
+    &--inactive {
+        z-index: 0;
+        opacity: 0;
+        transition: all 0.5s;
+    }
+    img {
+        width: 100%;
+    }
+    &__controls {
+        display: flex;
+        border-bottom: 1px solid $border-color;
+        padding: 20px 0;
+    }
+    &__control {
+        width: 110px !important;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+}
+@media screen and (max-width: 400px) {
+    .product-carousel {
+        &__control {
+            width: 80px !important;
+        }
+    }
+}

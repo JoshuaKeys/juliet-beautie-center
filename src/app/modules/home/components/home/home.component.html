@@ -1,0 +1,26 @@
+<app-top-header></app-top-header>
+<app-main-header></app-main-header>
+<!-- <app-carousel></app-carousel> -->
+<app-infinite-carousel></app-infinite-carousel>
+<app-what-we-do></app-what-we-do>
+<section class="home__best-selling container">
+
+    <h4 class="home__best-selling-header">feature products</h4>
+    <ul class="home__best-selling-items">
+        <li class="home__best-selling-item" *ngFor="let product of featuredProducts$ | async">
+            <app-product-item [product]="product"></app-product-item>
+        </li>
+    </ul>
+</section>
+
+<section class="home__best-selling container">
+
+    <h4 class="home__best-selling-header">best selling products</h4>
+    <ul class="home__best-selling-items">
+        <li class="home__best-selling-item" *ngFor="let product of bestSellingProducts$ | async">
+            <app-product-item [product]="product"></app-product-item>
+        </li>
+    </ul>
+</section>
+
+<app-footer></app-footer>

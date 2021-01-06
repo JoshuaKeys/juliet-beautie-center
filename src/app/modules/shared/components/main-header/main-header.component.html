@@ -1,0 +1,58 @@
+<header class="main-header">
+  <div class="container main-header--mobile">
+    <i (click)="toggleMenu()" class="main-header__menu-btn fas fa-bars"></i>
+    <a routerLink="/">
+      <img class="main-header__logo" src="assets/images/Lush-Lashes-2.png" />
+    </a>
+    <a class="main-header__nav-link" routerLink="/cart/bag">
+      <button class="main-header__cart-btn"><i class="main-header__cart-btn-icon fas fa-shopping-bag"></i></button>
+    </a>
+  </div>
+  <div class="container main-header__container  main-header--desktop">
+    <a routerLink="/">
+      <img class="main-header__logo" src="assets/images/Lush-Lashes-2.png" />
+    </a>
+    <nav class="main-header__nav ">
+      <ul class="main-header__nav-container">
+        <li class="main-header__nav-item">
+          <app-menu-drop-down type="list" [dropDownItems]="ourStorDropdown" dropdownLabel="">
+            <span class="label">our store</span>
+          </app-menu-drop-down>
+        </li>
+        <li class="main-header__nav-item">
+          <a class="main-header__nav-link" routerLink="/shop/body-butters">body butters</a>
+        </li>
+        <li class="main-header__nav-item">
+          <a class="main-header__nav-link" routerLink="/shop/facial-scrub">facial scrub</a>
+        </li>
+        <li class="main-header__nav-item">
+          <a class="main-header__nav-link" routerLink="/shop/body-scrub">body scrub</a>
+        </li>
+        <li class="main-header__nav-item">
+
+          <app-menu-drop-down type="list" [dropDownItems]="ourStorDropdown" dropdownLabel="">
+            <span class="label">hair case</span>
+          </app-menu-drop-down>
+
+        </li>
+
+        <li class="main-header__nav-item main-header__nav-item-last">
+          <i class="main-header__user fas fa-user"></i>
+          <a class="main-header__nav-link" routerLink="/cart/bag">
+            <button class="main-header__cart-btn">cart / ${{total | async}} <i
+                class="main-header__cart-btn-icon fas fa-shopping-bag"></i></button>
+          </a>
+        </li>
+        <li class="main-header__nav-item">
+          <a class="main-header__nav-link" routerLink="">
+            <app-menu-drop-down type="search" dropdownLabel="">
+              <i class="label fas fa-search"></i>
+              <app-search class="main-header__search"></app-search>
+            </app-menu-drop-down>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<app-side-nav *ngIf="isOpened" (closeMenu)="toggleMenu()"></app-side-nav>

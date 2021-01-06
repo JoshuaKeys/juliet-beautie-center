@@ -1,0 +1,44 @@
+@import "../../../../../assets/variables.scss";
+.top-header {
+  background-color: $primary-color;
+  color: #fff;
+  &__hot-line-number {
+    text-transform: uppercase;
+    font-size: 13px;
+  }
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 1;
+    height: 35px;
+  }
+  &__nav-link {
+    color: #fff;
+  }
+  &__nav-items {
+    display: flex;
+  }
+  &__nav-item {
+    list-style-type: none;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    padding: 0 10px;
+    font-size: 0.8em;
+  }
+  li.top-header__nav-item:first-of-type {
+    border-left: none;
+  }
+  li.top-header__nav-item:last-of-type {
+    border-right: none;
+  }
+}
+@media screen and (max-width: 1105px) {
+  .top-header__nav-items {
+    display: none;
+  }
+  .top-header__container {
+    // display: flex;
+    justify-content: center;
+  }
+}

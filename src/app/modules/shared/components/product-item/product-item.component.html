@@ -1,0 +1,16 @@
+<figure class="product-item" (mouseover)="switchImages()" (mouseleave)="resetSwitch($event)">
+  <div class="product-item__images" (click)="goToPdp()">
+    <img class="product-item__image" [@productHoverFade]="firstItemState" #productItemFirst [src]="'http://localhost:5000' + product.productImgs[0]">
+    <img class="product-item__image" [@productHoverFade]="secondItemState"#productItemSecond [src]="'http://localhost:5000' + product.productImgs[1]">
+    <!-- <div class="product-item__quick-view" [@productHoverFade]="hoveredState">
+      <p class="product-item__quick-view-link"(click)="show($event)">Quick View</p>
+    </div> -->
+  </div>
+  <figcaption class="product-item__details">
+    <div class="product-item__category-detail">{{product.productCategory}}</div>
+    <div class="product-item__description-detail">{{product.productShortDesc}}</div>
+    <div class="product-item__price-detail">{{product.productPrice | currency}}</div>
+  </figcaption>
+</figure>
+
+<app-product-item-modal [shown]="shown"></app-product-item-modal>

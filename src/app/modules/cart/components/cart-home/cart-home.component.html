@@ -1,0 +1,25 @@
+<app-top-header></app-top-header>
+<app-main-header></app-main-header>
+
+<section class="cart-home">
+    <div class="car-home__container container">
+        <nav class="cart-home__nav">
+            <ul class="cart-home__nav-container">
+                <li class="cart-home__nav-item">
+                    <a class="cart-home__nav-item-link" routerLinkActive="cart-home__nav-item-link-active"  routerLink="bag">shopping cart</a>
+                    <i class="cart-home__nav-item-chevron fas fa-chevron-right"></i>
+                </li>
+                <li class="cart-home__nav-item">
+                    <a class="cart-home__nav-item-link" routerLinkActive="cart-home__nav-item-link-active" routerLink="checkout">checkout details</a>
+                    <i class="cart-home__nav-item-chevron fas fa-chevron-right"></i>
+                </li>
+                <li class="cart=home__nav-item">
+                    <a class="cart-home__nav-item-link" routerLinkActive="cart-home__nav-item-link-active"  routerLink="order-confirmation">order complete</a>
+                </li>
+            </ul>
+        </nav>
+
+        <router-outlet></router-outlet>
+    </div>
+</section>
+<app-footer></app-footer>

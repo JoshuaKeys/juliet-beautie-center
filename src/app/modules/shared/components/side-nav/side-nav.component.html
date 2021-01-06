@@ -1,0 +1,27 @@
+<div class="side-nav">
+    <div class="side-nav__container">
+        <app-search class="side-nav__search"></app-search>
+        <ul class="side-nav__items">
+            <li class="side-nav__item">
+                <a [routerLink]="['']" routerLinkActive="router-link-active">our store</a>
+            </li>
+            <li class="side-nav__item">
+                <a [routerLink]="['/shop/body-butters']" routerLinkActive="router-link-active">body butters</a>
+            </li>
+            <li class="side-nav__item">
+                <a [routerLink]="['/shop/facial-scrub']" routerLinkActive="router-link-active">facial scrub</a>
+            </li>
+            <li class="side-nav__item">
+                <a [routerLink]="['/shop/hair-care']" routerLinkActive="router-link-active">hair care</a>
+            </li>
+            <li class="side-nav__item">
+                <a [routerLink]="['']" routerLinkActive="router-link-active">login</a>
+            </li>
+            <li class="side-nav__item">
+                <a [routerLink]="['']" routerLinkActive="router-link-active">newsletter</a>
+            </li>
+        </ul>
+    </div>
+    <i class="side-nav__close-icon fas fa-times" (click)="close()"></i>
+    <div class="side-nav__back-drop" (click)="close()"></div>
+  </div>

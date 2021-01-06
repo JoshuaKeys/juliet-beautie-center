@@ -1,0 +1,23 @@
+<div class="infinite-carousel">
+    <div class="infinite-carousel__container" (dragstart)="onDrag($event)" #container>
+        <div class="infinite-carousel__slider" #slider>
+            <section class="infinite-carousel__item infinite-carousel__item--first" >
+                <h1 class="infinite-carousel__item-header">Welcome to Juliet Beauty center</h1>
+                <button class="infinite-carousel__button" routerLink="shop/all">shop now</button>
+            </section>
+            <section class="infinite-carousel__item infinite-carousel__item--second">
+                <h1 class="infinite-carousel__item-header">Foaming Scrubs</h1>
+                <p class="infinite-carousel__item-body">slought off dry, dead skin & leave your skin feeling baby soft</p>
+                <button class="infinite-carousel__button" routerLink="shop/all">shop now</button>
+            </section>
+            <!--<section class="infinite-carousel__item">Content for section 4</section>
+            <section class="infinite-carousel__item">Content for section 5</section> -->
+        </div>
+        <!-- <div class="infinite-carousel__controls">
+            <span class="infinite-carousel__arrow infinite-carousel__arrow--prev" #prev
+                (click)="onPrevClicked()">prev</span>
+            <span class="infinite-carousel__arrow infinite-carousel__arrow--next" #next
+                (click)="onNextClicked()">next</span>
+        </div> -->
+    </div>
+</div>

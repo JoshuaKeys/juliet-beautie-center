@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+@import './assets/variables.scss';
+.container {
+  max-width: 1080px;
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  background-color: #fff;
+}
+
+@media screen and (max-width: 767px) {
+  .hide-mobile {
+    display: none;
+  }
+}
+
+html {
+  background-color: $primary-color;
+}

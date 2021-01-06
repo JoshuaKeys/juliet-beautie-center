@@ -1,0 +1,31 @@
+@import '../../../../../assets/variables.scss';
+
+.cart-home {
+    background-color: #fff;
+    &__nav-container {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+        padding-top: 20px;
+    }
+    &__nav-item {
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+    }
+    &__nav-item-link {
+        font-size: 1.5em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #000;
+        opacity: 0.5;
+    }
+    &__nav-item-link-active {
+        opacity: 1;
+    }
+    &__nav-item-chevron {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
