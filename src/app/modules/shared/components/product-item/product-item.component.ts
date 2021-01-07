@@ -18,7 +18,6 @@ export class ProductItemComponent implements OnInit, AfterViewInit, OnChanges, D
 
   ngOnInit(): void {
     console.log(this.product);
-    // console.log('Check for ng Inint')
   }
   ngAfterViewInit() {
 
@@ -27,8 +26,11 @@ export class ProductItemComponent implements OnInit, AfterViewInit, OnChanges, D
 
   }
   goToPdp() {
-    // console.log(this.product.productId)
-    this.router.navigate(['shop', 'product', this.product._id])
+    this.router.navigate(['shop', 'product', this.product._id], {
+      queryParams: {
+        category: this.product.productCategory
+      }
+    })
   }
   ngDoCheck() {
     // console.log('Calling Do Check now')

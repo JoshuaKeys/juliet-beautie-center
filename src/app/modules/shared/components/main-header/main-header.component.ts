@@ -19,8 +19,8 @@ export class MainHeaderComponent implements OnInit {
       itemName: 'Hair Care'
     },
     {
-      itemLink: '/shop/body-scrub',
-      itemName: 'Body Scrub'
+      itemLink: '/shop/body-oil',
+      itemName: 'Body Oil'
     },
     {
       itemLink: '/shop/facial-scrub',

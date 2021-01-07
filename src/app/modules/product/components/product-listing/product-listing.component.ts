@@ -28,29 +28,29 @@ export class ProductListingComponent implements OnInit {
     this.store.select(selectProducts).subscribe(
       products => {
         const param = this.activatedRoute.snapshot.params['category'];
-        if(param === 'all') {
+        if (param === 'all' && products) {
           this.products = products;
-        }else {
+        } else if (products && param !== 'all') {
           this.products = products.filter(value => {
             return value.productCategory.toLowerCase() === param.split('-').join(' ');
           });
         }
       }
     )
-     this.activatedRoute.params.pipe(
+    this.activatedRoute.params.pipe(
       withLatestFrom(this.store.select(selectProducts)),
 
       map(([params, products]) => {
-        if(params['category'] === 'all') {
+        if (params['category'] === 'all') {
           console.log(params, products)
           this.products = products
           return;
         }
-         this.products = products.filter(value => {
+        this.products = products && products.filter(value => {
           return value.productCategory.toLowerCase() === params['category'].split('-').join(' ');
         });
       })
-     ).subscribe();
+    ).subscribe();
 
     // this.products = this.activatedRoute.params.pipe(
     //   tap(item => console.log(item)),

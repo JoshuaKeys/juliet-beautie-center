@@ -20,14 +20,11 @@
     </div>
     <section class="pdp__related-products">
       <h1 class="pdp__related-products-header">related products</h1>
-      <div class="pdp__related-products-items" *ngIf="product">
-        <app-product-item [product]="product"></app-product-item>
-        <app-product-item [product]="product"></app-product-item>
-        <app-product-item [product]="product"></app-product-item>
-        <app-product-item [product]="product"></app-product-item>
+      <div class="pdp__related-products-items" *ngIf="recommendedProducts$ | async as recommendedProducts">
+        <app-product-item [product]="product" *ngFor="let product of recommendedProducts"></app-product-item>
       </div>
     </section>
   </div>
-  
+
 
 </section>

@@ -20,7 +20,13 @@ const cartRoutes: Routes = [
       {
         path: 'bag',
         component: CartComponent
-      },
+      }
+    ]
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+    children: [
       {
         path: 'checkout',
         component: CheckoutComponent

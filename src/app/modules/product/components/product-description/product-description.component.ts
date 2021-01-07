@@ -7,6 +7,7 @@ import { ProductItemModel } from 'src/app/modules/shared/models/product-item.mod
 import { CartService } from 'src/app/modules/shared/services/cart.service';
 import { fetchProductRequest } from '../../ngrx/actions';
 import { selectProduct, selectProductDescription } from '../../ngrx/selectors';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-product-description',
@@ -17,21 +18,31 @@ export class ProductDescriptionComponent implements OnInit {
 
   qty = 1;
   product: ProductItemModel;
+  recommendedProducts$: Observable<ProductItemModel[]>;
   addToCart() {
-    this.store.dispatch(addToBasketRequest({product: this.product, qty: this.qty}));
+    this.store.dispatch(addToBasketRequest({ product: this.product, qty: this.qty }));
   }
-  constructor(private cartService: CartService,
+  constructor(
     private activatedRoute: ActivatedRoute,
-    private store: Store) { }
+    private store: Store,
+    private productService: ProductsService) { }
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params.id;
-    this.store.dispatch(fetchProductRequest({productId: id}))
-    this.store.select(selectProductDescription, {id}).subscribe(
+    const category = this.activatedRoute.snapshot.queryParams.category;
+    this.store.dispatch(fetchProductRequest({ productId: id }))
+    this.store.select(selectProductDescription, { id }).subscribe(
       product => {
         this.product = product;
       }
     )
+    console.log('helllll')
+    this.getRecommendedProducts(id, category);
+  }
+
+  getRecommendedProducts(id, category) {
+    this.recommendedProducts$ = this.productService.fetchRecommendedProducts(id, category);
+    this.recommendedProducts$.subscribe(console.log)
   }
 
 }

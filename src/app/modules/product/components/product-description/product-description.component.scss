@@ -1,4 +1,4 @@
-@import '../../../../../assets/variables.scss';
+@import "../../../../../assets/variables.scss";
 .pdp {
   margin-top: 10px;
   &__container {
@@ -13,6 +13,7 @@
   }
 
   &__product-details {
+    width: 60%;
     &-title {
       text-transform: uppercase;
     }
@@ -35,7 +36,6 @@
     display: flex;
     border-bottom: 1px solid $border-color;
     padding: 20px 0;
-
   }
   &__product-carousel {
     &-controls {
@@ -66,6 +66,9 @@
 @media screen and (max-width: 849px) {
   .pdp {
     app-product-carousel {
+      width: 100%;
+    }
+    &__product-details {
       width: 100%;
     }
     &__related-products-items {
