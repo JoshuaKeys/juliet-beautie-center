@@ -26,7 +26,7 @@ export class LocalDeliveryComponent implements OnInit {
     this.novaPoshtaForm.get('city').valueChanges.pipe(
       mergeMap((value: string) => {
         const valueObj: NovaPoshtaCityModel = JSON.parse(value);
-        this.novaPoshtaService.calculateDeliveryPrice(valueObj.AreasCenter, 200, 1, 1).pipe(
+        this.novaPoshtaService.calculateDeliveryPrice(valueObj.AreasCenter, 2000, 0.25, 1).pipe(
           tap(price => {
             this.deliveryCost = price[0]
           })

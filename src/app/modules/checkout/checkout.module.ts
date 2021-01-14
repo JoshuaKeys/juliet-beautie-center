@@ -34,6 +34,9 @@ const checkoutRoutes: Routes = [
       }, {
         path: 'international-delivery',
         component: InternationalDeliveryComponent
+      }, {
+        path: 'payment',
+        component: PaymentComponent
       }
     ]
   }
