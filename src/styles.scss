@@ -23,3 +23,20 @@ body {
 html {
   background-color: $primary-color;
 }
+
+form {
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  .form-control {
+    display: block;
+    height: 48px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .form-group {
+    display: block;
+    margin-bottom: 24px;
+  }
+}

@@ -1,0 +1,26 @@
+<section class="contact-info">
+    <h1>Your contact details</h1>
+    <form *ngIf="contactForm" [formGroup]="contactForm" class="contact-info__form">
+        <div class="form-group">
+            <label for="firstName">First name</label>
+            <input formControlName="firstName" type="" class="form-control" id="firstName">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last name</label>
+            <input formControlName="lastName" type="" class="form-control" id="lastName">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input formControlName="email" type="" class="form-control" id="email">
+        </div>
+        <div class="form-group" *ngIf="countries | async as countries">
+            <label for="phoneNumber">Phone number</label>
+            <div class="contact-info__phone">
+                <app-phone-numbers formControlName="phoneCode" [countries]="countries"></app-phone-numbers>
+                <input formControlName="phoneNumber" type="number" id="phoneNumber">
+            </div>
+        </div>
+        <button [routerLink]="['./', 'location-question']" class="contact-info__proceed-btn">Proceed to Delivery
+            Options</button>
+    </form>
+</section>

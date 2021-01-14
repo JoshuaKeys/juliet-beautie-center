@@ -1,0 +1,13 @@
+<div class="search-select">
+    <input type="text" class="search-select__input" (keyup)="filterLocalCopy($event)" (focus)="openDropdown()"
+        [value]="selected && selected.DescriptionRu || ''">
+    <ul class="search-select__items" *ngIf="opened">
+        <li class="search-select__item" *ngIf="!localCopy || !localCopy.length; else localDivisions">
+            No divisions for the city selected
+        </li>
+        <li #localDivisions class="search-select__item" (click)="select(division)"
+            *ngFor="let division of filteredCopy">
+            {{division.DescriptionRu}}
+        </li>
+    </ul>
+</div>

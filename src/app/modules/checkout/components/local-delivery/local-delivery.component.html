@@ -1,0 +1,24 @@
+<div class="local-delivery">
+    <h1 class="local-delivery__header">Delivery by Nova poshta <img class="local-delivery__header-logo"
+            [src]="'http://localhost:5000/img/nova-poshta-logo.png'"></h1>
+
+    <form class="local-delivery__form" [formGroup]="novaPoshtaForm">
+        <div class="form-group">
+            <label>Enter your City</label>
+            <select class="form-control" formControlName="city" *ngIf="areas | async as areasSub">
+                <option *ngFor="let area of areasSub; let i= index" [value]="process(area)">{{area.DescriptionRu}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Nova Poshta Division</label>
+            <!-- <select class="form-control" formControlName="division">
+            </select> -->
+            <app-search-select formControlName="division" [divisions]="divisions"></app-search-select>
+        </div>
+        <div class="local-delivery__calculated-cost" *ngIf="deliveryCost">
+            (Cost of delivery: {{deliveryCost.Cost}}₴)
+        </div>
+        <button class="local-delivery__proceed-btn" [routerLink]="['../', 'payment']">Proceed to payment</button>
+    </form>
+</div>

@@ -18,6 +18,9 @@ app.use(
 );
 app.use("/api/product", require("./routes/api/product"));
 app.use("/api/related-products", require("./routes/api/related-products"));
+app.use('/api/get-nova-poshta-areas', require('./routes/api/get-nova-poshta-areas'));
+app.use('/api/get-nova-poshta-division', require('./routes/api/get-nova-poshta-division'));
+app.use('/api/calculate-delivery-cost', require('./routes/api/calculate-delivery-cost'));
 
 const PORT = process.env.PORT || 5000;
 

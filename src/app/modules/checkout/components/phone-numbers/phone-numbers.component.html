@@ -1,0 +1,18 @@
+<div class="phone-numbers" tabindex="0" (blur)="onBlur()">
+    <div class="phone-numbers__input-container" *ngIf="selectedCountry" (click)="toggleOPenedState()">
+        <div class="phone-numbers__img-container">
+            <img class="phone-numbers__img" [src]="selectedCountry.flag">
+        </div>
+        <div class="phone-number__code">({{selectedCountry.code}})</div>
+        <div class="phone-number__caret">
+            <i class="fas fa-angle-down"></i>
+        </div>
+    </div>
+    <ul #dropdown class="phone-numbers__input-dropdown" [ngClass]="{'phone-numbers__input-dropdown-opened': opened}">
+        <li class="phone-numbers__input-dropdown-item" (click)="select(country, $event)"
+            *ngFor="let country of countries">
+            <img [src]="country.flag" class="phone-numbers__input-img"> <span
+                class="phone-numbers__input-text">{{country.name}} ({{country.code}})</span>
+        </li>
+    </ul>
+</div>

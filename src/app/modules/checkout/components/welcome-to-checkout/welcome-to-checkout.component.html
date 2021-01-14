@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div class="welcome-to-checkout">
+    <div class="welcome-to-checkout__container">
+        <div class="welcome-to-checkout__routes">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="welcome-to-checkout__basket">
+            <h1>Basket ({{cartItems.length}} Items)</h1>
+            <ul class="cart-items" *ngIf="cartItems">
+                <li class="cart-items__item" *ngFor="let item of cartItems">
+                    <img class="cart-items__basket-img" [src]="'http://localhost:5000/'+item.productImg">
+                    <div class="cart-items__body">
+                        <span class="cart-items__basket-title">{{item.productShortDesc}}</span>
+                        <div class="cart-items__second-row">
+                            <span class="cart-items__qty">Quantity: {{item.qty}}</span>
+                            <span class="cart-items__price">{{item.productPrice}}</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="welcome-to-checkout__basket-total">
+                <span>Basket total</span> <span>${{totalItems}}</span>
+
+            </div>
+            <div>
+                (Excluding Delivery charge)
+            </div>
+        </div>
+    </div>
+</div>

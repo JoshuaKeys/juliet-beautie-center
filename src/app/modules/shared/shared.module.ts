@@ -13,6 +13,7 @@ import { QtySelectorComponent } from './components/qty-selector/qty-selector.com
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { SearchComponent } from './components/search/search.component';
 import { StoreModule } from '@ngrx/store';
+import { SearchSelectComponent } from './components/search-select/search-select.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { StoreModule } from '@ngrx/store';
     QtySelectorComponent,
     SideNavComponent,
     SearchComponent,
+    SearchSelectComponent,
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { StoreModule } from '@ngrx/store';
     ProductItemsComponent,
     QtySelectorComponent,
     SideNavComponent,
-    SearchComponent
+    SearchComponent,
+    SearchSelectComponent
   ]
 })
 export class SharedModule { }

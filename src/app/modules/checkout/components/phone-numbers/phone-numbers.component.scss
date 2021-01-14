@@ -1,0 +1,59 @@
+.phone-numbers {
+    display: flex;
+    position: relative;
+    width: 120px;
+    &__input-text {
+
+    }
+    &__img {
+        width: 30px;
+        border: thin solid black;
+    }
+    &__input-container {
+        border: thin solid black;
+        cursor: pointer;
+        height: 30px;
+        align-items: center;
+        width: 120px;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+    &__input-img {
+        width: 30px;
+    }
+    &__input-dropdown {
+        padding: 0;
+        cursor: pointer;
+        flex-direction: column;
+        height: 200px;
+        width: 400px;
+        overflow-y: scroll;
+        position: absolute;
+        top: 36px;
+        border: thin solid black;
+        background-color: #fff;
+        padding: 0 15px;
+        display: none;
+    }
+    .phone-numbers__input-dropdown-item-selected {
+        background-color: #666;
+        color: #fff;
+    }
+    &__input-dropdown-opened {
+        display: flex;
+    }
+    &__input-dropdown-item {
+        display: flex;
+        margin: 5px 0;
+        list-style-type: none;
+        padding: 5px;
+        &:hover {
+            background-color: #666;
+            color: #fff;
+        }
+    }
+    &__input-img {
+        margin-right: 10px;
+    }
+}
