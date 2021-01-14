@@ -1,7 +1,9 @@
 <figure class="product-item" (mouseover)="switchImages()" (mouseleave)="resetSwitch($event)">
   <div class="product-item__images" (click)="goToPdp()">
-    <img class="product-item__image" [@productHoverFade]="firstItemState" #productItemFirst [src]="'http://localhost:5000' + product.productImgs[0]">
-    <img class="product-item__image" [@productHoverFade]="secondItemState"#productItemSecond [src]="'http://localhost:5000' + product.productImgs[1]">
+    <img class="product-item__image" [@productHoverFade]="firstItemState" #productItemFirst
+      [src]="product.productImgs[0]">
+    <img class="product-item__image" [@productHoverFade]="secondItemState" #productItemSecond
+      [src]="product.productImgs[1]">
     <!-- <div class="product-item__quick-view" [@productHoverFade]="hoveredState">
       <p class="product-item__quick-view-link"(click)="show($event)">Quick View</p>
     </div> -->

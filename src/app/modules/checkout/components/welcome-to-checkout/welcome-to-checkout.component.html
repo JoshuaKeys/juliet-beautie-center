@@ -8,7 +8,7 @@
             <h1>Basket ({{cartItems.length}} Items)</h1>
             <ul class="cart-items" *ngIf="cartItems">
                 <li class="cart-items__item" *ngFor="let item of cartItems">
-                    <img class="cart-items__basket-img" [src]="'http://localhost:5000/'+item.productImg">
+                    <img class="cart-items__basket-img" [src]="item.productImg">
                     <div class="cart-items__body">
                         <span class="cart-items__basket-title">{{item.productShortDesc}}</span>
                         <div class="cart-items__second-row">

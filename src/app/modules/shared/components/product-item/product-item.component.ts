@@ -17,7 +17,7 @@ export class ProductItemComponent implements OnInit, AfterViewInit, OnChanges, D
   constructor(private renderer: Renderer2, private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.product);
+
   }
   ngAfterViewInit() {
 

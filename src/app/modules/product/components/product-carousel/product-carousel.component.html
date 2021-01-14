@@ -1,12 +1,14 @@
 <div class="product-carousel">
-    <div class="product-carousel__views">
+  <div class="product-carousel__views">
 
-      <img class="product-carousel__view product-carousel--active" #first [src]="'http://localhost:5000' + product.productImgs[0]">
-      <img class="product-carousel__view product-carousel--inactive" #second [src]="'http://localhost:5000' + product.productImgs[1]">
-      <img class="product-carousel__equalizer" [src]="'http://localhost:5000' + product.productImgs[0]">
-    </div>
-    <div class="product-carousel__controls">
-      <img [ngClass]="{'product-carousel__control--active': itemActive === 1}" (click)="show(1)" class="product-carousel__control" [src]="'http://localhost:5000' + product.productImgs[0]">
-      <img [ngClass]="{'product-carousel__control--active': itemActive === 2}" (click)="show(2)" class="product-carousel__control" [src]="'http://localhost:5000' + product.productImgs[1]">
-    </div>
+    <img class="product-carousel__view product-carousel--active" #first [src]="product.productImgs[0]">
+    <img class="product-carousel__view product-carousel--inactive" #second [src]="product.productImgs[1]">
+    <img class="product-carousel__equalizer" [src]="product.productImgs[0]">
   </div>
+  <div class="product-carousel__controls">
+    <img [ngClass]="{'product-carousel__control--active': itemActive === 1}" (click)="show(1)"
+      class="product-carousel__control" [src]="product.productImgs[0]">
+    <img [ngClass]="{'product-carousel__control--active': itemActive === 2}" (click)="show(2)"
+      class="product-carousel__control" [src]="product.productImgs[1]">
+  </div>
+</div>
