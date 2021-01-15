@@ -8,6 +8,7 @@ import { LiqpaySignatureDataModel } from '../models/liqpay-signature-data.model'
 })
 export class LiqpayService {
   getSignatureAndData(): Observable<LiqpaySignatureDataModel> {
+    console.log('hello world');
     return this.httpClient.get<LiqpaySignatureDataModel>('/api/make-payments')
   }
   constructor(private httpClient: HttpClient) { }
