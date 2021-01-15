@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LiqpaySignatureDataModel } from '../models/liqpay-signature-data.model';
@@ -7,9 +7,13 @@ import { LiqpaySignatureDataModel } from '../models/liqpay-signature-data.model'
   providedIn: 'root'
 })
 export class LiqpayService {
-  getSignatureAndData(): Observable<LiqpaySignatureDataModel> {
-    console.log('hello world');
-    return this.httpClient.get<LiqpaySignatureDataModel>('/api/make-payments')
+  getSignatureAndData(amount, order_id, description): Observable<LiqpaySignatureDataModel> {
+    return this.httpClient.get<LiqpaySignatureDataModel>('/api/make-payments', {
+      params: new HttpParams()
+        .set('amount', amount)
+        .set('order_id', order_id)
+        .set('description', description)
+    })
   }
   constructor(private httpClient: HttpClient) { }
 }

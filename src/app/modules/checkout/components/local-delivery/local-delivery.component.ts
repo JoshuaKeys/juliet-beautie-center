@@ -8,6 +8,7 @@ import { LiqpaySignatureDataModel } from '../../models/liqpay-signature-data.mod
 import { NovaPoshtaCityModel } from '../../models/nova-poshta-city.model';
 import { LiqpayService } from '../../services/liqpay.service';
 import { NovaPoshtaService } from '../../services/nova-poshta.service';
+import { v4 } from 'uuid';
 
 @Component({
   selector: 'app-local-delivery',
@@ -22,7 +23,8 @@ export class LocalDeliveryComponent implements OnInit {
   signatureAndData: Observable<LiqpaySignatureDataModel>;
   submitForm: FormGroup;
   ngOnInit(): void {
-    this.signatureAndData = this.liqpayService.getSignatureAndData()
+    const orderId = v4();
+    this.signatureAndData = this.liqpayService.getSignatureAndData(20, orderId, 'Payment for goods on website')
     this.novaPoshtaForm = new FormGroup({
       city: new FormControl(''),
       division: new FormControl('')
@@ -32,6 +34,7 @@ export class LocalDeliveryComponent implements OnInit {
     this.novaPoshtaForm.get('city').valueChanges.pipe(
       mergeMap((value: string) => {
         const valueObj: NovaPoshtaCityModel = JSON.parse(value);
+
         this.novaPoshtaService.calculateDeliveryPrice(valueObj.AreasCenter, 2000, 0.25, 1).pipe(
           tap(price => {
             this.deliveryCost = price[0]

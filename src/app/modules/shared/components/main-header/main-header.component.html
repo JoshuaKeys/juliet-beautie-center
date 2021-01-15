@@ -39,7 +39,7 @@
         <li class="main-header__nav-item main-header__nav-item-last">
           <i class="main-header__user fas fa-user"></i>
           <a class="main-header__nav-link" routerLink="/cart/bag">
-            <button class="main-header__cart-btn">cart / ${{total | async}} <i
+            <button class="main-header__cart-btn">cart / ${{total | async | number}} <i
                 class="main-header__cart-btn-icon fas fa-shopping-bag"></i></button>
           </a>
         </li>

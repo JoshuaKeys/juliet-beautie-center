@@ -13,6 +13,7 @@ import { LocationQuestionComponent } from './components/location-question/locati
 import { LocalDeliveryComponent } from './components/local-delivery/local-delivery.component';
 import { InternationalDeliveryComponent } from './components/international-delivery/international-delivery.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { DetailsConfirmationComponent } from './components/details-confirmation/details-confirmation.component';
 
 const checkoutRoutes: Routes = [
   {
@@ -43,7 +44,7 @@ const checkoutRoutes: Routes = [
 ]
 
 @NgModule({
-  declarations: [WelcomeToCheckoutComponent, HeaderComponent, SignInComponent, ContactInfoComponent, PhoneNumbersComponent, DeliveryInfoComponent, LocationQuestionComponent, LocalDeliveryComponent, InternationalDeliveryComponent, PaymentComponent],
+  declarations: [WelcomeToCheckoutComponent, HeaderComponent, SignInComponent, ContactInfoComponent, PhoneNumbersComponent, DeliveryInfoComponent, LocationQuestionComponent, LocalDeliveryComponent, InternationalDeliveryComponent, PaymentComponent, DetailsConfirmationComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
