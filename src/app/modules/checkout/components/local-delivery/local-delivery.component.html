@@ -19,6 +19,12 @@
         <div class="local-delivery__calculated-cost" *ngIf="deliveryCost">
             (Cost of delivery: {{deliveryCost.Cost}}₴)
         </div>
-        <button class="local-delivery__proceed-btn" [routerLink]="['../', 'payment']">Proceed to payment</button>
+    </form>
+    <form method="POST" ngNoForm action="https://www.liqpay.ua/api/3/checkout" accept-charset="utf-8"
+        *ngIf="signatureAndData | async as signatureData">
+        <input type="hidden" name="data" [value]="signatureData.data" />
+        <input type="hidden" name="signature" [value]="signatureData.signature" />
+        <!-- <button class="local-delivery__proceed-btn" [routerLink]="['../', 'payment']">Proceed to payment</button> -->
+        <input type="image" src="//static.liqpay.ua/buttons/p1ru.radius.png" />
     </form>
 </div>

@@ -1,13 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../../models/Product');
-const config = require('config');
 const request = require('request');
+
+try {
+    novaPoshtaKey = config.get('novaPoshtaKey');
+} catch (e) {
+    novaPoshtaKey = process.env.novaPoshtaKey;
+}
+
 
 router.get('/', async (req, res) => {
 
     const body = {
-        "apiKey": config.get('novaPoshtaAPIKey'),
+        "apiKey": novaPoshtaKey,
         "modelName": "Address",
         "calledMethod": "getAreas"
     }

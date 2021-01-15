@@ -4,10 +4,18 @@ const Product = require('../../models/Product');
 const config = require('config');
 const request = require('request');
 
+let novaPoshtaKey;
+
+try {
+    novaPoshtaKey = config.get('novaPoshtaKey');
+} catch (e) {
+    novaPoshtaKey = process.env.novaPoshtaKey;
+}
+
 router.get('/', async (req, res) => {
     const { CityRecipient, Cost, Weight, SeatsAmount } = req.query;
     const body = {
-        "apiKey": config.get('novaPoshtaAPIKey'),
+        "apiKey": novaPoshtaKey,
         "modelName": "InternetDocument",
         "calledMethod": "getDocumentPrice",
         "methodProperties": {

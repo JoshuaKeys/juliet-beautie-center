@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { mergeMap, tap } from 'rxjs/operators';
 import { NovaPoshtaDivisionModel } from 'src/app/modules/shared/models/nova-poshta-division.model';
 import { DeliveryCostModel } from '../../models/delivery-cost.model';
+import { LiqpaySignatureDataModel } from '../../models/liqpay-signature-data.model';
 import { NovaPoshtaCityModel } from '../../models/nova-poshta-city.model';
+import { LiqpayService } from '../../services/liqpay.service';
 import { NovaPoshtaService } from '../../services/nova-poshta.service';
 
 @Component({
@@ -17,11 +19,15 @@ export class LocalDeliveryComponent implements OnInit {
   divisions: NovaPoshtaDivisionModel[];
   deliveryCost: DeliveryCostModel;
   novaPoshtaForm: FormGroup;
+  signatureAndData: Observable<LiqpaySignatureDataModel>;
+  submitForm: FormGroup;
   ngOnInit(): void {
+    this.signatureAndData = this.liqpayService.getSignatureAndData()
     this.novaPoshtaForm = new FormGroup({
       city: new FormControl(''),
       division: new FormControl('')
     })
+    this.submitForm = new FormGroup({})
     this.areas = this.novaPoshtaService.getNovaPoshtaCountries();
     this.novaPoshtaForm.get('city').valueChanges.pipe(
       mergeMap((value: string) => {
@@ -41,5 +47,5 @@ export class LocalDeliveryComponent implements OnInit {
   process(area) {
     return JSON.stringify(area);
   }
-  constructor(private novaPoshtaService: NovaPoshtaService) { }
+  constructor(private novaPoshtaService: NovaPoshtaService, private liqpayService: LiqpayService) { }
 }
