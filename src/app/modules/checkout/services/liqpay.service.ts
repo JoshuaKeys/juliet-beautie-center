@@ -15,7 +15,7 @@ export class LiqpayService {
         .set('order_id', order_id)
         .set('description', description)
         .set('info', info)
-        .set('result_url', `/api/fulfil-payments?order_id=${order_id}`)
+        .set('result_url', `https://juliet-beautie-center.herokuapp.com/api/fulfil-payments?order_id=${order_id}`)
     });
   }
   getExchangeRates(): Observable<ExchangeRateModel[]> {

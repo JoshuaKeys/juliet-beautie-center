@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map, mergeMap, tap } from 'rxjs/operators';
+import { map, mergeMap, tap, withLatestFrom } from 'rxjs/operators';
 import { selectTotalItems } from 'src/app/modules/cart/ngrx/cart.selectors';
 import { v4 } from 'uuid'
 import { DeliveryDetailsModel } from '../../models/delivery-details.model';
@@ -34,11 +34,12 @@ export class DetailsConfirmationComponent implements OnInit {
     this.deliveryDetails = this.store.select(selectDeliveryDetails);
     this.deliveryDetails.subscribe(console.log)
     this.deliveryPrice.pipe(
-      mergeMap(price => this.deliveryDetails.pipe(
+      withLatestFrom(this.basketTotal),
+      mergeMap(([price, basketTotal]) => this.deliveryDetails.pipe(
         tap(deliveryDetails => {
           const orderId = v4();
           const info = JSON.stringify(deliveryDetails);
-          this.signatureAndData = this.liqpayService.getSignatureAndData(price, orderId, 'Payment for goods on website', info);
+          this.signatureAndData = this.liqpayService.getSignatureAndData(price + basketTotal, orderId, 'Payment for goods on website', info);
         })
       ))
     ).subscribe();
