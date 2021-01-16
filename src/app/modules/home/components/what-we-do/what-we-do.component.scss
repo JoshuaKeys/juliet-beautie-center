@@ -8,7 +8,7 @@
     color: $primary-color;
     text-align: center;
     margin: 0;
-    height: 80px;
+    min-height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,5 +40,13 @@
     color: #fff;
     border: none;
     cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 513px) {
+  .what-we-do {
+    &__items {
+      flex-direction: column;
+    }
   }
 }

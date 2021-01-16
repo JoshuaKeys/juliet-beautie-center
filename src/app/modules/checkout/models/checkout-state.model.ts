@@ -7,7 +7,7 @@ export interface CheckoutStateModel {
     lastName?: string;
     email?: string;
     phoneCode?: CountryModel;
-    phoneNumer?: string;
+    phoneNumber?: string;
     localInUkraine?: boolean;
     localDelivery?: LocalDeliveryModel;
     deliveryCharge?: number;

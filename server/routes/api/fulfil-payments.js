@@ -3,7 +3,8 @@ const router = express.Router();
 const Product = require('../../models/Product');
 const sendgrid = require('sendgrid');
 const crypto = require('crypto');
-const Liqpay = require('liqpayjs-sdk')
+const Liqpay = require('liqpayjs-sdk');
+const handlebars = require('handlebars');
 
 
 let private_key;
@@ -22,14 +23,15 @@ var liqpay = new Liqpay(public_key, private_key);
 
 
 router.post('/', async (req, res) => {
-    const { data, signature } = req.body;
-    const { order_id } = req.query;
+    const { data, signature, } = req.body;
+    const { order_id, info } = req.query;
     liqpay.api('request', {
         'action': 'status',
         'version': '3',
         order_id
     }, function (json) {
-        res.json(json);
+        console.log(info);
+        res.json({ json, info });
     })
 })
 
