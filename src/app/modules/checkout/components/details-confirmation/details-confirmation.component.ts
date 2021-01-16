@@ -29,8 +29,6 @@ export class DetailsConfirmationComponent implements OnInit {
   deliveryDetails: Observable<DeliveryDetailsModel>
 
   ngOnInit(): void {
-    const orderId = v4();
-    this.signatureAndData = this.liqpayService.getSignatureAndData(this.deliveryPrice, orderId, 'Payment for goods on website');
     this.deliveryPrice = this.store.select(selectDeliveryCharge);
     this.basketTotal = this.store.select(selectTotalItems);
     this.deliveryDetails = this.store.select(selectDeliveryDetails);

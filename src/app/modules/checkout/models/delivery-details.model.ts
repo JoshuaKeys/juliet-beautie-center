@@ -5,7 +5,7 @@ export interface DeliveryDetailsModel {
     lastName: string;
     phoneNumber: string;
     email: string;
-    city: NovaPoshtaCityModel;
+    city: NovaPoshtaCityModel | string;
     division: string;
     country: string;
 }
