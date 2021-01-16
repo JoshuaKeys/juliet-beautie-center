@@ -45,8 +45,17 @@
 
 @media screen and (max-width: 513px) {
   .what-we-do {
+    &__heading {
+      font-size: 25px;
+      min-height: unset;
+      margin-top: 20px;
+    }
     &__items {
       flex-direction: column;
+    }
+    &__item-header {
+      font-size: 20px;
+      max-width: 70%;
     }
   }
 }

@@ -1,10 +1,25 @@
 <div class="cart-item">
     <div class="cart-item__container">
-        <i class="far fa-times-circle" (click)="removeItem()"></i>
+        <!-- <i class="far fa-times-circle" ></i> -->
         <img class="cart-item__img" [src]="cartItem.productImg">
-        <span class="cart-item__title">{{cartItem.productShortDesc}}</span>
-        <span class="cart-item__price">${{cartItem.productPrice}}</span>
-        <app-qty-selector class="cart-item__qty" [qty]="cartItem.qty"></app-qty-selector>
-        <span class="cart-item__sub-total">${{+cartItem.productPrice * cartItem.qty}}</span>
+        <div class="cart-item__content">
+            <div class="cart-item__content-container">
+                <div class="cart-item__content-item">
+                    <span class="cart-item__title">{{cartItem.productShortDesc}}</span>
+                    <button class="cart-item__remove-item" (click)="removeItem()">Remove item</button>
+                </div>
+                <div class="cart-item__content-item">
+                    <span>Currently in stock online</span>
+                </div>
+                <div class="cart-item__qty-controller">
+                    <h1 class='cart-item__qty-controller-header'>Quantity</h1>
+                    <div class="cart-item__qty-controller-body">
+                        <app-qty-selector class="cart-item__qty" [qty]="cartItem.qty"></app-qty-selector>
+                        <span class="cart-item__sub-total">${{+cartItem.productPrice * cartItem.qty}}</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>

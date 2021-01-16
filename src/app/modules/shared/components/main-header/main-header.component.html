@@ -5,7 +5,8 @@
       <img class="main-header__logo" src="assets/images/Lush-Lashes-2.png" />
     </a>
     <a class="main-header__nav-link" routerLink="/cart/bag">
-      <button class="main-header__cart-btn"><i class="main-header__cart-btn-icon fas fa-shopping-bag"></i></button>
+      <button class="main-header__cart-btn">{{total | async | currency}}<i
+          class="main-header__cart-btn-icon fas fa-shopping-bag"></i></button>
     </a>
   </div>
   <div class="container main-header__container  main-header--desktop">

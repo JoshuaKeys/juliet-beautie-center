@@ -1,18 +1,29 @@
 @import '../../../../../assets/variables.scss';
 .qty-selector {
     &__container {
-        border: thin solid $border-color;
-        height: 40px;
+        height: 48px;
         display: flex;
     }
     &__qty {
-        width: 30px;
+        width: 48px;
         display: flex;
         justify-content: center;
         align-items: center;
+        border: 1px solid $border-color;
+        font-size: 1.2em;
+        font-weight: 300;
     }
     &__btn {
-        width: 25px;
+        width: 48px;
         border: none;
+        background-color: #fff;
+        border: 1px solid $border-color;
+        font-size: 20px;
+        &:first-of-type {
+            margin-right: 10px;
+        }
+        &:last-of-type {
+            margin-left: 10px;
+        }
     }
 }

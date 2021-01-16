@@ -33,12 +33,15 @@
     }
     &__controls {
         display: flex;
+        align-items: center;
         border-bottom: 1px solid $border-color;
         padding: 20px 0;
+        height: 80px;
     }
     &__control {
         width: 110px !important;
         margin-right: 20px;
+        height: 100%;
         cursor: pointer;
     }
 }
