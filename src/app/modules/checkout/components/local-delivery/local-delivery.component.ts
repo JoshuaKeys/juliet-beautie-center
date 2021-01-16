@@ -27,8 +27,6 @@ export class LocalDeliveryComponent implements OnInit {
   signatureAndData: Observable<LiqpaySignatureDataModel>;
   submitForm: FormGroup;
   ngOnInit(): void {
-    const orderId = v4();
-    this.signatureAndData = this.liqpayService.getSignatureAndData(20, orderId, 'Payment for goods on website');
     this.novaPoshtaForm = new FormGroup({
       city: new FormControl('', Validators.required),
       division: new FormControl('', Validators.required)
@@ -42,7 +40,6 @@ export class LocalDeliveryComponent implements OnInit {
         this.liqpayService.getExchangeRates().pipe(
           mergeMap(exchangeRates => {
             const amountInDollars = 29.46;
-            const dollarRate = this.getDollarRate(exchangeRates);
             const amountInHryvnia = this.calculateAmountInHryvnia(amountInDollars, exchangeRates)
             return this.novaPoshtaService.calculateDeliveryPrice(valueObj.AreasCenter, amountInHryvnia, 0.25, 1).pipe(
               map((deliveryCost: DeliveryCostModel[]) => {
@@ -53,17 +50,6 @@ export class LocalDeliveryComponent implements OnInit {
             )
           })
         ).subscribe()
-
-        // this.novaPoshtaService.calculateDeliveryPrice(valueObj.AreasCenter, 2000, 0.25, 1).pipe(
-        //   mergeMap(prices => this.liqpayService.getExchangeRates().pipe(
-        //     map(retValue => {
-
-        //     })
-        //   )),
-        //   // tap(price => {
-        //   //   this.deliveryCost = price[0]
-        //   // })
-        // ).subscribe()
         return this.novaPoshtaService.getNovaPoshtaDivision(valueObj.AreasCenter);
       }),
       tap(divisions => {

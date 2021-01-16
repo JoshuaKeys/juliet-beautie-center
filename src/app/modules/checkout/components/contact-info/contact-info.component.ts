@@ -26,11 +26,11 @@ export class ContactInfoComponent implements OnInit {
     this.countries.subscribe(countries => {
       const ukrIdx = countries.findIndex(country => country.code === '+380');
       this.contactForm = new FormGroup({
-        firstName: new FormControl('Joshua', Validators.required),
-        lastName: new FormControl('Oguma', Validators.required),
-        email: new FormControl('joshua.oguma@outlook.com', [Validators.required, Validators.email]),
+        firstName: new FormControl('', Validators.required),
+        lastName: new FormControl('', Validators.required),
+        email: new FormControl('', [Validators.required, Validators.email]),
         phoneCode: new FormControl(countries[ukrIdx]),
-        phoneNumber: new FormControl('957055882', [Validators.required])
+        phoneNumber: new FormControl('', [Validators.required])
       })
     })
   }

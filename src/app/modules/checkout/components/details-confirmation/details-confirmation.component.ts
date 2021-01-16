@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { map, mergeMap, tap } from 'rxjs/operators';
+import { selectTotalItems } from 'src/app/modules/cart/ngrx/cart.selectors';
 import { v4 } from 'uuid'
+import { DeliveryDetailsModel } from '../../models/delivery-details.model';
 import { LiqpaySignatureDataModel } from '../../models/liqpay-signature-data.model';
+import { selectDeliveryCharge, selectDeliveryDetails } from '../../ngrx/checkout.selectors';
 import { LiqpayService } from '../../services/liqpay.service';
 @Component({
   selector: 'app-details-confirmation',
@@ -17,14 +22,28 @@ export class DetailsConfirmationComponent implements OnInit {
   city = 'Kharkiv'
   deliveryMethod = 'Nova Poshta';
   address = "NovaPoshta Otdelenia 11"
-  deliveryPrice = 3.50;
-  basketTotal = 20.59;
+  deliveryPrice: Observable<number>;
+  basketTotal: Observable<number>;
 
   signatureAndData: Observable<LiqpaySignatureDataModel>;
+  deliveryDetails: Observable<DeliveryDetailsModel>
 
   ngOnInit(): void {
     const orderId = v4();
     this.signatureAndData = this.liqpayService.getSignatureAndData(this.deliveryPrice, orderId, 'Payment for goods on website');
+    this.deliveryPrice = this.store.select(selectDeliveryCharge);
+    this.basketTotal = this.store.select(selectTotalItems);
+    this.deliveryDetails = this.store.select(selectDeliveryDetails);
+    this.deliveryDetails.subscribe(console.log)
+    this.deliveryPrice.pipe(
+      mergeMap(price => this.deliveryDetails.pipe(
+        tap(deliveryDetails => {
+          const orderId = v4();
+          const info = JSON.stringify(deliveryDetails);
+          this.signatureAndData = this.liqpayService.getSignatureAndData(price, orderId, 'Payment for goods on website', info);
+        })
+      ))
+    ).subscribe();
   }
-  constructor(private liqpayService: LiqpayService) { }
+  constructor(private liqpayService: LiqpayService, private store: Store) { }
 }

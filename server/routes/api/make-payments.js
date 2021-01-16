@@ -18,7 +18,9 @@ router.get('/', async (req, res) => {
         order_id,
         amount,
         description,
+        info
     } = req.query;
+    console.log(info);
     const json_string = {
         public_key,
         action: 'pay',
@@ -27,6 +29,7 @@ router.get('/', async (req, res) => {
         description,
         order_id,
         version: '3',
+        info,
         result_url: 'https://juliet-beautie-center.herokuapp.com/api/fulfil-payments'
     };
 

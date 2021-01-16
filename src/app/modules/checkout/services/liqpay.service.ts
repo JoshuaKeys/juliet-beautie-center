@@ -8,13 +8,14 @@ import { LiqpaySignatureDataModel } from '../models/liqpay-signature-data.model'
   providedIn: 'root'
 })
 export class LiqpayService {
-  getSignatureAndData(amount, order_id, description): Observable<LiqpaySignatureDataModel> {
+  getSignatureAndData(amount, order_id, description, info): Observable<LiqpaySignatureDataModel> {
     return this.httpClient.get<LiqpaySignatureDataModel>('/api/make-payments', {
       params: new HttpParams()
         .set('amount', amount)
         .set('order_id', order_id)
         .set('description', description)
-    })
+        .set('info', info)
+    });
   }
   getExchangeRates(): Observable<ExchangeRateModel[]> {
     return this.httpClient.get<ExchangeRateModel[]>('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=11')
