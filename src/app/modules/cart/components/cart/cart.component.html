@@ -6,7 +6,7 @@
                     <span>Total (excluding delivery): </span> {{subTotal | async | currency}}
                 </div>
                 <div class="cart__mobile-checkout-container">
-                    <button class="cart__checkout-btn">continue to checkout</button>
+                    <button class="cart__checkout-btn" routerLink="/checkout">continue to checkout</button>
                 </div>
             </div>
 
@@ -19,7 +19,7 @@
                     </li>
                 </ul>
                 <div class="cart--desktop cart__continue-shopping-btn">
-                    <a routerLink="">Continue shopping</a>
+                    <a routerLink="/shop/all">Continue shopping</a>
                 </div>
             </div>
 
@@ -42,20 +42,19 @@
                 </p>
             </div>
         </div>
-
         <div class="cart--mobile">
             <div class="cart__shipping-info-mobile">
                 <span>Spend a total of {{30 | currency}} to qualify for FREE Delivery in Ukraine</span>
             </div>
             <div class="cart__continue-shopping-btn">
-                <a routerLink="">Continue shopping</a>
+                <a routerLink="/shop/all">Continue shopping</a>
             </div>
             <div class="cart__mobile-container">
                 <div class="cart__mobile-total">
                     <span>Total (excluding delivery): </span> {{subTotal | async | currency}}
                 </div>
                 <div class="cart__mobile-checkout-container">
-                    <button class="cart__checkout-btn">continue to checkout</button>
+                    <button class="cart__checkout-btn" routerLink="/checkout">continue to checkout</button>
                     <p>
                         <i class="cart__payment-icon fab fa-cc-visa"></i>
                         <i class="cart__payment-icon fab fa-cc-paypal"></i>

@@ -24,3 +24,11 @@
         margin-bottom: 10px;
     }
 }
+
+@media screen and (max-width: 960px) {
+    .local-delivery {
+        &__form {
+            max-width: 100%;
+        }
+    }
+}

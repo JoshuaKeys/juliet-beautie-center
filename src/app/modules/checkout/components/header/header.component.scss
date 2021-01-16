@@ -22,8 +22,24 @@
             height: 40px;
             justify-content: center;
             align-items: center;
-            border-radius: 100px;
+            border-radius: 50%;
             color: #999;
+        }
+    }
+}
+
+@media screen and (max-width: 513px) {
+    .header {
+        &__logo {
+            width: 70%;
+            min-width: 150px;
+        }
+        &__secure-checkout {
+            width: 300px;
+            justify-content: flex-end;
+            &-icon {
+                display: none;
+            }
         }
     }
 }

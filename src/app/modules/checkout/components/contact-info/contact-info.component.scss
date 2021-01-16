@@ -1,6 +1,7 @@
 .contact-info {
     &__form {
         width: 90%;
+        margin: 0 auto;
     }
     &__phone {
         display: flex;
@@ -16,8 +17,21 @@
         background-color: #000;
         color: #fff;
         &--disabled {
-            opacity: 0.5;
+            background-color: #666;
         }
     }
     margin-bottom: 50px;
+}
+
+@media screen and (max-width: 960px) {
+    .contact-info {
+        &__form {
+            width: 100%;
+        }
+        &__phone {
+            input {
+                width: 120px;
+            }
+        }
+    }
 }

@@ -13,14 +13,14 @@
                         <span class="cart-items__basket-title">{{item.productShortDesc}}</span>
                         <div class="cart-items__second-row">
                             <span class="cart-items__qty">Quantity: {{item.qty}}</span>
-                            <span class="cart-items__price">{{item.productPrice}}</span>
+                            <span class="cart-items__price">{{item.productPrice | currency}}</span>
                         </div>
                     </div>
                 </li>
             </ul>
             <div *ngIf="deliveryCharge | async as deliveryCost; else excludingDelivery">
                 <div class="welcome-to-checkout__basket-total">
-                    <span>Basket total</span> <span>${{totalItems}}</span>
+                    <span>Basket total</span> <span>{{totalItems | currency}}</span>
                 </div>
                 <p class="welcome-to-checkout__delivery-charge">
                     <span>Delivery Charge</span> <span>{{deliveryCost | currency}}</span>
@@ -31,7 +31,7 @@
             </div>
             <ng-template #excludingDelivery>
                 <div class="welcome-to-checkout__basket-total">
-                    <span>Basket total</span> <span>${{totalItems}}</span>
+                    <span>Basket total</span> <span>{{totalItems | currency}}</span>
                 </div>
                 <div>
                     (Excluding Delivery charge)
@@ -41,3 +41,4 @@
         </div>
     </div>
 </div>
+<app-footer></app-footer>

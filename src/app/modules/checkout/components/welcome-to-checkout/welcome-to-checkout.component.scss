@@ -1,5 +1,5 @@
+@import '../../../../../assets/variables.scss';
 .welcome-to-checkout {
-
     &__container {
         min-height: 550px;
         display: flex;
@@ -55,4 +55,17 @@
         justify-content: space-between;
     }
     
+}
+
+@media screen and (max-width: 960px) {
+    .welcome-to-checkout {
+        &__basket {
+            display: none;
+        }
+        &__routes {
+            max-width: 80%;
+            margin: 0 auto;
+            border: none;
+        }
+    }
 }
