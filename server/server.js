@@ -8,6 +8,8 @@ const app = express();
 connectDB();
 app.use(express.static("public"));
 app.use(express.static('frontend'));
+app.use(express.json())
+app.use(express.urlencoded())
 app.get("/", (req, res) => {
   res.send("API Running");
 });
