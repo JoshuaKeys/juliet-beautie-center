@@ -18,9 +18,10 @@ router.get('/', async (req, res) => {
         order_id,
         amount,
         description,
-        info
+        info,
+        result_url
     } = req.query;
-    console.log(info);
+    console.log(result_url);
     const json_string = {
         public_key,
         action: 'pay',
@@ -30,19 +31,16 @@ router.get('/', async (req, res) => {
         order_id,
         version: '3',
         info,
-        result_url: 'https://juliet-beautie-center.herokuapp.com/api/fulfil-payments'
+        result_url
     };
 
     const buff = Buffer.from(JSON.stringify(json_string));
     const data = buff.toString('base64');
-    console.log(private_key);
     const sign_string = private_key.trim() + data + private_key.trim();
-    console.log(sign_string);
 
     const sha = crypto.createHash('sha1');
     sha.update(sign_string);
     const signature = sha.digest('base64');
-    console.log({ signature, data, })
     res.json({ signature, data, sign_string })
 });
 

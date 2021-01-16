@@ -23,8 +23,14 @@ var liqpay = new Liqpay(public_key, private_key);
 
 router.post('/', async (req, res) => {
     const { data, signature } = req.body;
-    var sign = liqpay.str_to_sign(private_key + data + private_key)
-    res.json({ body: signature === sign && "payment received" });
-});
+    const { order_id } = req.query;
+    liqpay.api('request', {
+        'action': 'status',
+        'version': '3',
+        order_id
+    }, function (json) {
+        res.json(json);
+    })
+})
 
 module.exports = router;
