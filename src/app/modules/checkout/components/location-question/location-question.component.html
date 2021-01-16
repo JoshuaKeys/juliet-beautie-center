@@ -2,7 +2,8 @@
     <div class="location-question__container">
         <h1 class="location-question__header">Are you located in Ukraine</h1>
         <div class="location-question__answer">
-            <div class="location-question__answer-yes" [routerLink]="['../', 'local-delivery']">Yes</div>
+            <div class="location-question__answer-yes" [routerLink]="['../', 'local-delivery']"
+                (click)="confirmLocalResidence()">Yes</div>
             <div class="location-question__answer-no" [routerLink]="['../', 'international-delivery']">No</div>
         </div>
     </div>

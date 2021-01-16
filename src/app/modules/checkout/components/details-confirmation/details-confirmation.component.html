@@ -1,1 +1,40 @@
-<p>details-confirmation works!</p>
+<section class="details-confirmation">
+    <h1 class="details-confirmation__header">Review and pay</h1>
+    <ul class="details-confirmation__details-items">
+        <li class="details-confirmation__details-item">
+            <h2 class="details-confirmation__details-item-header">Delivery details</h2>
+            <ul class="details-confirmation__details-item-list">
+                <li>{{firstName}} {{lastName}}</li>
+                <li>{{phoneNumber}}</li>
+                <li>{{address}}, {{city}}, {{country}}</li>
+            </ul>
+        </li>
+        <li class="details-confirmation__details-item">
+            <h2 class="details-confirmation__details-item-header">Email</h2>
+            <p class="details-confirmation__details-item-text">{{email}}</p>
+        </li>
+    </ul>
+    <form method=" POST" class="details-confirmation__payment-form" ngNoForm
+        action="https://www.liqpay.ua/api/3/checkout" accept-charset="utf-8"
+        *ngIf="signatureAndData | async as signatureData">
+        <input type="hidden" name="data" [value]="signatureData.data" />
+        <input type="hidden" name="signature" [value]="signatureData.signature" />
+        <div class="details-confirmation__payment-form-details" *ngIf="deliveryPrice | async as deliveryPrice">
+            <div class="details-confirmation__basket-total">
+                <span class="details-confirmation__payment-heading">Basket total</span> <span>{{basketTotal |
+                    currency}}</span>
+            </div>
+            <div class="details-confirmation__delivery-charge">
+                <span class="details-confirmation__payment-heading">Delivery charge</span> <span>{{deliveryPrice |
+                    currency}}</span>
+            </div>
+            <div class="details-confirmation__order-total">
+                <span class="details-confirmation__payment-heading">Order total</span> <span>{{(basketTotal +
+                    deliveryPrice) | currency}}</span>
+            </div>
+            <button class="details-confirmation__payment-btn">Place order and pay</button>
+        </div>
+
+        <!-- <input type="image" src="//static.liqpay.ua/buttons/p1ru.radius.png" /> -->
+    </form>
+</section>

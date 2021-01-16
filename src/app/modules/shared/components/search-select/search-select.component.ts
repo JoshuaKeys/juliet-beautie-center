@@ -18,6 +18,7 @@ export class SearchSelectComponent implements OnInit, ControlValueAccessor, OnCh
   localCopy: NovaPoshtaDivisionModel[];
   filteredCopy: NovaPoshtaDivisionModel[];
   selected: NovaPoshtaDivisionModel;
+  onChange: (division: NovaPoshtaDivisionModel) => any;
   opened: boolean;
   constructor() { }
 
@@ -29,7 +30,7 @@ export class SearchSelectComponent implements OnInit, ControlValueAccessor, OnCh
     console.log(value);
   }
   registerOnChange(change: any) {
-
+    this.onChange = change;
   }
   registerOnTouched(change: any) {
 
@@ -40,6 +41,7 @@ export class SearchSelectComponent implements OnInit, ControlValueAccessor, OnCh
     }
   }
   toggleOpened() {
+    console.log('hoolll')
     this.opened = !this.opened;
   }
   filterLocalCopy(event: KeyboardEvent) {
@@ -55,5 +57,6 @@ export class SearchSelectComponent implements OnInit, ControlValueAccessor, OnCh
   select(division: NovaPoshtaDivisionModel) {
     this.selected = division;
     this.toggleOpened();
+    this.onChange(this.selected)
   }
 }

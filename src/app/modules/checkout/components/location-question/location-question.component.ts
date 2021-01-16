@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { confirmLocal } from '../../ngrx/checkout.actions';
 
 @Component({
   selector: 'app-location-question',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LocationQuestionComponent implements OnInit {
 
-  constructor() { }
-
   ngOnInit(): void {
   }
-
+  confirmLocalResidence() {
+    this.store.dispatch(confirmLocal())
+  }
+  constructor(private store: Store) { }
 }

@@ -14,6 +14,8 @@ import { LocalDeliveryComponent } from './components/local-delivery/local-delive
 import { InternationalDeliveryComponent } from './components/international-delivery/international-delivery.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { DetailsConfirmationComponent } from './components/details-confirmation/details-confirmation.component';
+import { StoreModule } from '@ngrx/store';
+import { checkoutReducer } from './ngrx/checkout.reducer';
 
 const checkoutRoutes: Routes = [
   {
@@ -38,6 +40,9 @@ const checkoutRoutes: Routes = [
       }, {
         path: 'payment',
         component: PaymentComponent
+      }, {
+        path: 'details-confirmation',
+        component: DetailsConfirmationComponent
       }
     ]
   }
@@ -50,6 +55,7 @@ const checkoutRoutes: Routes = [
     ReactiveFormsModule,
     SharedModule,
     RouterModule.forChild(checkoutRoutes),
+    StoreModule.forFeature('checkout', checkoutReducer)
 
   ],
   exports: [

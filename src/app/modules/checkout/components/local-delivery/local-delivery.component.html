@@ -12,19 +12,13 @@
         </div>
         <div class="form-group">
             <label>Nova Poshta Division</label>
-            <!-- <select class="form-control" formControlName="division">
-            </select> -->
             <app-search-select formControlName="division" [divisions]="divisions"></app-search-select>
         </div>
         <div class="local-delivery__calculated-cost" *ngIf="deliveryCost">
-            (Cost of delivery: {{deliveryCost.Cost}}₴)
+            Cost of delivery: <b>{{deliveryCost | currency}}</b>
         </div>
-    </form>
-    <form method="POST" ngNoForm action="https://www.liqpay.ua/api/3/checkout" accept-charset="utf-8"
-        *ngIf="signatureAndData | async as signatureData">
-        <input type="hidden" name="data" [value]="signatureData.data" />
-        <input type="hidden" name="signature" [value]="signatureData.signature" />
-        <!-- <button class="local-delivery__proceed-btn" [routerLink]="['../', 'payment']">Proceed to payment</button> -->
-        <input type="image" src="//static.liqpay.ua/buttons/p1ru.radius.png" />
+        <button class="local-delivery__proceed-btn"
+            [ngClass]="{'local-delivery__proceed-btn--disabled': novaPoshtaForm.invalid}" (click)="setOrderDetails()"
+            [routerLink]="['../', 'details-confirmation']" [disabled]="novaPoshtaForm.invalid">Place an order</button>
     </form>
 </div>

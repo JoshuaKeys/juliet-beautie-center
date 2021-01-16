@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { CartItemModel } from 'src/app/modules/shared/models/cart.model';
 import { CartService } from 'src/app/modules/shared/services/cart.service';
+import { selectDeliveryCharge } from '../../ngrx/checkout.selectors';
 
 @Component({
   selector: 'app-welcome-to-checkout',
@@ -10,12 +13,16 @@ import { CartService } from 'src/app/modules/shared/services/cart.service';
 export class WelcomeToCheckoutComponent implements OnInit {
   cartItems: CartItemModel[];
   totalItems: number;
+  deliveryCharge: Observable<number>;
 
-  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getItems().items;
     this.totalItems = this.cartService.getTotal()
+    this.deliveryCharge = this.store.select(selectDeliveryCharge)
   }
+
+
+  constructor(private cartService: CartService, private store: Store) { }
 
 }

@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ExchangeRateModel } from '../models/exchange-rate.model';
 import { LiqpaySignatureDataModel } from '../models/liqpay-signature-data.model';
 
 @Injectable({
@@ -14,6 +15,9 @@ export class LiqpayService {
         .set('order_id', order_id)
         .set('description', description)
     })
+  }
+  getExchangeRates(): Observable<ExchangeRateModel[]> {
+    return this.httpClient.get<ExchangeRateModel[]>('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=11')
   }
   constructor(private httpClient: HttpClient) { }
 }

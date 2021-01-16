@@ -18,13 +18,26 @@
                     </div>
                 </li>
             </ul>
-            <div class="welcome-to-checkout__basket-total">
-                <span>Basket total</span> <span>${{totalItems}}</span>
+            <div *ngIf="deliveryCharge | async as deliveryCost; else excludingDelivery">
+                <div class="welcome-to-checkout__basket-total">
+                    <span>Basket total</span> <span>${{totalItems}}</span>
+                </div>
+                <p class="welcome-to-checkout__delivery-charge">
+                    <span>Delivery Charge</span> <span>{{deliveryCost | currency}}</span>
+                </p>
+                <p class="welcome-to-checkout__total-charge">
+                    <span>Total</span> <span>{{(totalItems + deliveryCost) | currency}}</span>
+                </p>
+            </div>
+            <ng-template #excludingDelivery>
+                <div class="welcome-to-checkout__basket-total">
+                    <span>Basket total</span> <span>${{totalItems}}</span>
+                </div>
+                <div>
+                    (Excluding Delivery charge)
+                </div>
+            </ng-template>
 
-            </div>
-            <div>
-                (Excluding Delivery charge)
-            </div>
         </div>
     </div>
 </div>

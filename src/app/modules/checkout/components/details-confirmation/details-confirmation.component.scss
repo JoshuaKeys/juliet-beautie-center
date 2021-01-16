@@ -1,0 +1,62 @@
+.details-confirmation {
+    &__details-items {
+        display: flex;
+        padding: 0;
+    }
+    &__details-item {
+        list-style-type: none;
+        margin: 0;
+        &-text {
+            margin: 0;
+        }
+        &-header {
+            margin: 0;
+            font-size: 1em;
+        }
+        &-list {
+            max-width: 80%;
+            padding: 0;
+            li {
+                list-style-type: none;
+            }
+        }
+    }
+    &__payment-form {
+        margin: 0 20px;
+        &-details {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        display: flex;
+        justify-content: flex-end;
+    }
+    &__order-total {
+        border-top: 1px solid #d8d8d8;
+        padding: 10px 0;
+        margin-top: 10px;
+    }
+    &__payment-btn {
+        width: 100%;
+        height: 50px;
+        background-color: #000000;
+        color: #fff;
+        border: none;
+        font-size: 1em;
+    }
+    &__delivery-charge,
+    &__basket-total,
+    &__order-total {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+    }
+    &__payment-heading {
+        display: flex;
+        width: 60%;
+        padding: 10px 0;
+        justify-content: flex-end;
+    }
+}

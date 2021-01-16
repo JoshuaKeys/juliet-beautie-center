@@ -20,7 +20,9 @@
                 <input formControlName="phoneNumber" type="number" id="phoneNumber">
             </div>
         </div>
-        <button [routerLink]="['./', 'location-question']" class="contact-info__proceed-btn">Proceed to Delivery
+        <button [routerLink]="['./', 'location-question']" class="contact-info__proceed-btn" (click)="setContact()"
+            [ngClass]="{'contact-info__proceed-btn--disabled': contactForm.invalid}"
+            [disabled]="contactForm.invalid">Proceed to Delivery
             Options</button>
     </form>
 </section>

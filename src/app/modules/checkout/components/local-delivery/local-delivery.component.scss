@@ -16,6 +16,9 @@
         height: 50px;
         color: #fff;
         background-color: #000;
+        &--disabled {
+            background-color: #666;
+        }
     }
     &__calculated-cost {
         margin-bottom: 10px;

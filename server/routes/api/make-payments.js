@@ -26,7 +26,8 @@ router.get('/', async (req, res) => {
         currency: 'USD',
         description,
         order_id,
-        version: '3'
+        version: '3',
+        result_url: 'https://juliet-beautie-center.herokuapp.com/api/fulfil-payments'
     };
 
     const buff = Buffer.from(JSON.stringify(json_string));

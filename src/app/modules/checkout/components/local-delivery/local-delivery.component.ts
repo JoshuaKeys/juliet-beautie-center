@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { mergeMap, tap } from 'rxjs/operators';
+import { map, mergeMap, tap, withLatestFrom } from 'rxjs/operators';
 import { NovaPoshtaDivisionModel } from 'src/app/modules/shared/models/nova-poshta-division.model';
 import { DeliveryCostModel } from '../../models/delivery-cost.model';
 import { LiqpaySignatureDataModel } from '../../models/liqpay-signature-data.model';
@@ -9,6 +9,10 @@ import { NovaPoshtaCityModel } from '../../models/nova-poshta-city.model';
 import { LiqpayService } from '../../services/liqpay.service';
 import { NovaPoshtaService } from '../../services/nova-poshta.service';
 import { v4 } from 'uuid';
+import { Store } from '@ngrx/store';
+import { LocalDeliveryModel } from '../../models/local-delivery.model';
+import { setDeliveryCost, setLocalDeliveryDetails } from '../../ngrx/checkout.actions';
+import { ExchangeRateModel } from '../../models/exchange-rate.model';
 
 @Component({
   selector: 'app-local-delivery',
@@ -18,16 +22,16 @@ import { v4 } from 'uuid';
 export class LocalDeliveryComponent implements OnInit {
   areas: Observable<NovaPoshtaCityModel[]>;
   divisions: NovaPoshtaDivisionModel[];
-  deliveryCost: DeliveryCostModel;
+  deliveryCost: number;
   novaPoshtaForm: FormGroup;
   signatureAndData: Observable<LiqpaySignatureDataModel>;
   submitForm: FormGroup;
   ngOnInit(): void {
     const orderId = v4();
-    this.signatureAndData = this.liqpayService.getSignatureAndData(20, orderId, 'Payment for goods on website')
+    this.signatureAndData = this.liqpayService.getSignatureAndData(20, orderId, 'Payment for goods on website');
     this.novaPoshtaForm = new FormGroup({
-      city: new FormControl(''),
-      division: new FormControl('')
+      city: new FormControl('', Validators.required),
+      division: new FormControl('', Validators.required)
     })
     this.submitForm = new FormGroup({})
     this.areas = this.novaPoshtaService.getNovaPoshtaCountries();
@@ -35,11 +39,31 @@ export class LocalDeliveryComponent implements OnInit {
       mergeMap((value: string) => {
         const valueObj: NovaPoshtaCityModel = JSON.parse(value);
 
-        this.novaPoshtaService.calculateDeliveryPrice(valueObj.AreasCenter, 2000, 0.25, 1).pipe(
-          tap(price => {
-            this.deliveryCost = price[0]
+        this.liqpayService.getExchangeRates().pipe(
+          mergeMap(exchangeRates => {
+            const amountInDollars = 29.46;
+            const dollarRate = this.getDollarRate(exchangeRates);
+            const amountInHryvnia = this.calculateAmountInHryvnia(amountInDollars, exchangeRates)
+            return this.novaPoshtaService.calculateDeliveryPrice(valueObj.AreasCenter, amountInHryvnia, 0.25, 1).pipe(
+              map((deliveryCost: DeliveryCostModel[]) => {
+                const deliveryCostInDollars = this.calculateAmountInDollars(deliveryCost[0].Cost, exchangeRates);
+                this.deliveryCost = deliveryCostInDollars;
+                this.store.dispatch(setDeliveryCost({ cost: this.deliveryCost }))
+              })
+            )
           })
         ).subscribe()
+
+        // this.novaPoshtaService.calculateDeliveryPrice(valueObj.AreasCenter, 2000, 0.25, 1).pipe(
+        //   mergeMap(prices => this.liqpayService.getExchangeRates().pipe(
+        //     map(retValue => {
+
+        //     })
+        //   )),
+        //   // tap(price => {
+        //   //   this.deliveryCost = price[0]
+        //   // })
+        // ).subscribe()
         return this.novaPoshtaService.getNovaPoshtaDivision(valueObj.AreasCenter);
       }),
       tap(divisions => {
@@ -50,5 +74,25 @@ export class LocalDeliveryComponent implements OnInit {
   process(area) {
     return JSON.stringify(area);
   }
-  constructor(private novaPoshtaService: NovaPoshtaService, private liqpayService: LiqpayService) { }
+  getDollarRate(exchangeRates: ExchangeRateModel[]) {
+    return exchangeRates.find(exchangeRate => exchangeRate.ccy === 'USD')
+  }
+  calculateAmountInHryvnia(amountInDollars: number, exchangeRates: ExchangeRateModel[]) {
+    const dollarRate = this.getDollarRate(exchangeRates);
+    return +dollarRate.buy * amountInDollars;
+  }
+  calculateAmountInDollars(amountInHryvnia: number, exchangeRates: ExchangeRateModel[]) {
+    const dollarRate = this.getDollarRate(exchangeRates);
+    return amountInHryvnia / +dollarRate.buy;
+  }
+  setOrderDetails() {
+    const division = this.novaPoshtaForm.value.division;
+    const city = JSON.parse(this.novaPoshtaForm.value.city);
+    this.store.dispatch(setLocalDeliveryDetails({ localDeliveryDetails: { division, city } }));
+  }
+  constructor(
+    private novaPoshtaService: NovaPoshtaService,
+    private liqpayService: LiqpayService,
+    private store: Store
+  ) { }
 }

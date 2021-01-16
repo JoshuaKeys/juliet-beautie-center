@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CartItemModel } from 'src/app/modules/shared/models/cart.model';
 import { CountryModel } from 'src/app/modules/shared/models/country.model';
 import { CartService } from 'src/app/modules/shared/services/cart.service';
 import { CountryService } from 'src/app/modules/shared/services/country.service';
+import { ContactModel } from '../../models/contact.model';
+import { setContactDetails } from '../../ngrx/checkout.actions';
 
 @Component({
   selector: 'app-contact-info',
@@ -16,20 +19,26 @@ export class ContactInfoComponent implements OnInit {
   countries: Observable<CountryModel[]>;
 
   contactForm: FormGroup;
-  constructor(private cartService: CartService, private countryCodes: CountryService) { }
+
 
   ngOnInit(): void {
     this.countries = this.countryCodes.getCountryCodes();
     this.countries.subscribe(countries => {
       const ukrIdx = countries.findIndex(country => country.code === '+380');
       this.contactForm = new FormGroup({
-        firstName: new FormControl(''),
-        lastName: new FormControl(''),
-        email: new FormControl(''),
+        firstName: new FormControl('Joshua', Validators.required),
+        lastName: new FormControl('Oguma', Validators.required),
+        email: new FormControl('joshua.oguma@outlook.com', [Validators.required, Validators.email]),
         phoneCode: new FormControl(countries[ukrIdx]),
-        phoneNumber: new FormControl('')
+        phoneNumber: new FormControl('957055882', [Validators.required])
       })
     })
   }
+  setContact() {
+    const contactDetails: ContactModel = this.contactForm.value;
+    this.store.dispatch(setContactDetails({ contactDetails }))
+  }
+
+  constructor(private countryCodes: CountryService, private store: Store) { }
 
 }
