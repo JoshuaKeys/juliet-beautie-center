@@ -3,7 +3,8 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CartItemModel } from 'src/app/modules/shared/models/cart.model';
 import { CartService } from 'src/app/modules/shared/services/cart.service';
-import { removeCartItemRequest } from '../../ngrx/cart.actions';
+import { CartUpdateModel } from '../../models/cart-update.model';
+import { removeCartItemRequest, updateCartQtyRequest } from '../../ngrx/cart.actions';
 import { selectCartItems, selectTotalItems } from '../../ngrx/cart.selectors';
 
 @Component({
@@ -24,7 +25,10 @@ export class CartComponent implements OnInit {
   }
 
   removeItem(product: CartItemModel) {
-    this.store.dispatch(removeCartItemRequest({product}));
+    this.store.dispatch(removeCartItemRequest({ product }));
+  }
+  updateCartQty(updateItem: CartUpdateModel) {
+    this.store.dispatch(updateCartQtyRequest({ updateItem }))
   }
 
 

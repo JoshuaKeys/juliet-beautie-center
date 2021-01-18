@@ -15,7 +15,8 @@
             <div class="cart__items">
                 <ul class="cart__items">
                     <li class="cart__item" *ngFor="let cartItem of items | async">
-                        <app-cart-item (removeCartItem)="removeItem($event)" [cartItem]="cartItem"></app-cart-item>
+                        <app-cart-item (updateCartQty)="updateCartQty($event)" (removeCartItem)="removeItem($event)"
+                            [cartItem]="cartItem"></app-cart-item>
                     </li>
                 </ul>
                 <div class="cart--desktop cart__continue-shopping-btn">

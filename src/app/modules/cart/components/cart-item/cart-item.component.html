@@ -14,8 +14,10 @@
                 <div class="cart-item__qty-controller">
                     <h1 class='cart-item__qty-controller-header'>Quantity</h1>
                     <div class="cart-item__qty-controller-body">
-                        <app-qty-selector class="cart-item__qty" [qty]="cartItem.qty"></app-qty-selector>
-                        <span class="cart-item__sub-total">${{+cartItem.productPrice * cartItem.qty}}</span>
+                        <app-qty-selector (qtyChanged)="updateQty($event, cartItem)" class="cart-item__qty"
+                            [qty]="cartItem.qty">
+                        </app-qty-selector>
+                        <span class="cart-item__sub-total">{{+cartItem.productPrice * cartItem.qty | currency}}</span>
                     </div>
 
                 </div>
