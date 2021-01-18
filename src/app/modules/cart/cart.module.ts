@@ -18,6 +18,11 @@ const cartRoutes: Routes = [
     component: CartHomeComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'bag',
+        pathMatch: 'full'
+      },
+      {
         path: 'bag',
         component: CartComponent
       }

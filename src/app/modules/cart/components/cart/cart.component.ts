@@ -15,11 +15,13 @@ import { selectCartItems, selectTotalItems } from '../../ngrx/cart.selectors';
 export class CartComponent implements OnInit {
   items: Observable<CartItemModel[]>;
   subTotal: Observable<number>;
+  cartItems: Observable<CartItemModel[]>;
   flatRate = 1.99;
   constructor(private cartService: CartService, private store: Store) { }
 
   ngOnInit(): void {
     // this.items = this.cartService.getItems().items;
+    this.cartItems = this.store.select(selectCartItems);
     this.subTotal = this.store.select(selectTotalItems);
     this.items = this.store.select(selectCartItems)
   }

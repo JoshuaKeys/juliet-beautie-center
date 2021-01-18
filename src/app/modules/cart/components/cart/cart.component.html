@@ -1,5 +1,15 @@
 <section class="cart">
-    <div class="cart__container">
+    <ng-template #emptyCartMessage>
+        <div class="cart__container">
+            <div class="cart__empty-cart-message">
+                <h1>Your Cart is Empty</h1>
+                <div class="cart__continue-shopping-btn">
+                    <a routerLink="/shop/all">Continue shopping</a>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <div class="cart__container" *ngIf="(cartItems | async) && (cartItems | async).length; else emptyCartMessage">
         <div class="cart--mobile">
             <div class="cart__mobile-container">
                 <div class="cart__mobile-total">

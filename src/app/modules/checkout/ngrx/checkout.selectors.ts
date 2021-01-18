@@ -6,6 +6,22 @@ const checkoutFeature = createFeatureSelector<CheckoutStateModel>('checkout');
 export const selectDeliveryCharge = createSelector(checkoutFeature, checkoutFeature =>
     checkoutFeature.deliveryCharge || null
 );
+export const selectFirstName = createSelector(checkoutFeature, feature => {
+    if (!Object.keys(feature).length) {
+        return null;
+    }
+    return {
+        firstName: feature.firstName
+    }
+});
+export const selectLocalDelivery = createSelector(checkoutFeature, feature => {
+    if (!Object.keys(feature).length) {
+        return null;
+    }
+    return {
+        isLocalDelivery: feature.localInUkraine
+    }
+});
 export const selectDeliveryDetails = createSelector(checkoutFeature, feature => {
     if (!Object.keys(feature).length) {
         return null
