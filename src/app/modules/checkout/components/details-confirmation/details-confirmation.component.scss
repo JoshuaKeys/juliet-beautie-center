@@ -67,12 +67,15 @@
     .details-confirmation {
         &__details-items {
             margin: 0;
+            flex-direction: column;
         }
         &__details-item {
-            flex-direction: column;
             margin-bottom: 10px;
         }
-        &__details-confirmation__payment-heading {
+        &__payment-form {
+            margin: 20px;
+        }
+        &__payment-heading {
             justify-content: flex-start;
         }
     }
