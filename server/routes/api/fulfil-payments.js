@@ -31,7 +31,8 @@ router.post('/', async (req, res) => {
         order_id
     }, function (json) {
         console.log(info);
-        res.json({ json, info });
+        res.redirect('/checkout/order-confirmation');
+        // res.json({ json, info });
     })
 })
 

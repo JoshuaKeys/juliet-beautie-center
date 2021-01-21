@@ -20,6 +20,9 @@ import { ContactDetailsGuardService } from './guards/contact-details-guard.servi
 import { LocationQuestionGuardService } from './guards/location-question-guard.service';
 import { LocalDeliveryGuardService } from './guards/local-delivery-guard.service';
 import { DetailsConfirmationGuardService } from './guards/details-confirmation-guard.service';
+import { EffectsModule } from '@ngrx/effects';
+import { CheckoutEffects } from './ngrx/checkout.effects';
+import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 
 const checkoutRoutes: Routes = [
   {
@@ -53,7 +56,10 @@ const checkoutRoutes: Routes = [
         component: DetailsConfirmationComponent
       }
     ]
-  }
+  }, {
+        path: 'order-confirmation',
+        component: OrderConfirmationComponent
+      }
 ]
 
 @NgModule({
@@ -63,8 +69,8 @@ const checkoutRoutes: Routes = [
     ReactiveFormsModule,
     SharedModule,
     RouterModule.forChild(checkoutRoutes),
-    StoreModule.forFeature('checkout', checkoutReducer)
-
+    StoreModule.forFeature('checkout', checkoutReducer),
+    EffectsModule.forFeature([CheckoutEffects])
   ],
   exports: [
     RouterModule

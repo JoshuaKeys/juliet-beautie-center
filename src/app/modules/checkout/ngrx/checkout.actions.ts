@@ -18,4 +18,8 @@ export const setLocalDeliveryDetails = createAction(
 export const setDeliveryCost = createAction(
     '[LocalDeliveryComponent] setDeliveryCost',
     props<{ cost: number }>()
+);
+export const saveOrderDetails = createAction(
+    '[DeliveryConfirmationComponent] saveOrderDetails',
+    props<{orderForm: HTMLFormElement, info: string}>()
 )

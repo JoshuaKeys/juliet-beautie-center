@@ -14,8 +14,8 @@
             <p class="details-confirmation__details-item-text">{{email}}</p>
         </li>
     </ul>
-    <form method=" POST" class="details-confirmation__payment-form" ngNoForm
-        action="https://www.liqpay.ua/api/3/checkout" accept-charset="utf-8"
+    <form #orderForm method=" POST" class="details-confirmation__payment-form" ngNoForm
+         accept-charset="utf-8"
         *ngIf="signatureAndData | async as signatureData">
         <input type="hidden" name="data" [value]="signatureData.data" />
         <input type="hidden" name="signature" [value]="signatureData.signature" />
@@ -32,9 +32,7 @@
                 <span class="details-confirmation__payment-heading">Order total</span> <span>{{(basketTotal +
                     deliveryPrice) | currency}}</span>
             </div>
-            <button class="details-confirmation__payment-btn">Place order and pay</button>
+            <button (click)="placeOrder()" class="details-confirmation__payment-btn" type="button">Place order and pay</button>
         </div>
-
-        <!-- <input type="image" src="//static.liqpay.ua/buttons/p1ru.radius.png" /> -->
     </form>
 </section>
