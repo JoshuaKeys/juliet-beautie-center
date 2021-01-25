@@ -1,0 +1,10 @@
+.about-us {
+  &__header {
+    text-align: center;
+  }
+  &__body {
+    max-width: 500px;
+    margin: 0 auto 50px;
+    padding: 0 10px;
+  }
+}

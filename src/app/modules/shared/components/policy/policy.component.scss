@@ -1,0 +1,17 @@
+.policy {
+  &__header {
+    text-align: center;
+  }
+  &__items {
+    max-width: 500px;
+    margin: 0 auto 50px;
+    padding: 0 10px;
+  }
+  &__item {
+    list-style-type: none;
+    margin-bottom: 20px;
+    &-question {
+      font-weight: bold;
+    }
+  }
+}
