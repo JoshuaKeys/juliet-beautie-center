@@ -4,9 +4,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { addToBasketRequest } from 'src/app/modules/cart/ngrx/cart.actions';
 import { ProductItemModel } from 'src/app/modules/shared/models/product-item.model';
-import { CartService } from 'src/app/modules/shared/services/cart.service';
 import { fetchProductRequest } from '../../ngrx/actions';
-import { selectProduct, selectProductDescription } from '../../ngrx/selectors';
+import { selectProductDescription } from '../../ngrx/selectors';
 import { ProductsService } from '../../services/products.service';
 
 @Component({
@@ -36,8 +35,10 @@ export class ProductDescriptionComponent implements OnInit {
         this.product = product;
       }
     )
-    console.log('helllll')
     this.getRecommendedProducts(id, category);
+  }
+  qtyChanged(event) {
+    this.qty = event;
   }
 
   getRecommendedProducts(id, category) {

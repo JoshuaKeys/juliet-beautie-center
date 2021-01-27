@@ -18,11 +18,11 @@ export class CartService {
       productImg: product.productImgs[0]
     };
   }
-  appendProductItem(productItem: CartItemModel, storageObj: CartModel): CartModel {
+  appendProductItem(productItem: CartItemModel, storageObj: CartModel, qty: number): CartModel {
     if (storageObj) {
       const productIdx = storageObj.items.findIndex(product => product._id === productItem._id);
       if (productIdx > -1) {
-        storageObj.items[productIdx].qty++;
+        storageObj.items[productIdx].qty += qty;
         return storageObj;
       }
       storageObj.items.push(productItem);
@@ -47,7 +47,7 @@ export class CartService {
     const julietsBeautyCart = localStorage.getItem('julietsBeautyCart');
     let julietsBeautyCartObj: CartModel = JSON.parse(julietsBeautyCart);
 
-    const modifiedCart = this.appendProductItem(productItem, julietsBeautyCartObj)
+    const modifiedCart = this.appendProductItem(productItem, julietsBeautyCartObj, qty)
 
     localStorage.setItem('julietsBeautyCart', JSON.stringify(modifiedCart))
   }

@@ -7,10 +7,18 @@
         <p>
           <b>{{product.productPrice | currency}}</b>
         </p>
-        <p>{{product.productInstructions}}</p>
+        <p>{{product.productBenefits}}</p>
         <div class="pdp__controls">
-          <app-qty-selector [qty]="qty"></app-qty-selector>
+          <app-qty-selector (qtyChanged)="qtyChanged($event)" [qty]="qty"></app-qty-selector>
           <button class="pdp__add-to-cart-btn" (click)="addToCart()">add to cart</button>
+        </div>
+        <div class="pdp__ingredients">
+          <h2 class="pdp__ingredients-header">Ingredients</h2>
+          <ul>
+            <li *ngFor="let ingredient of product.productIngredients">
+              {{ingredient}}
+            </li>
+          </ul>
         </div>
         <div class="pdp__footer">
           Category: <a routerLink="" class="pdp__category-link">{{product.productCategory}}</a>
